@@ -1,6 +1,6 @@
 #include <cstdio>
 void merge(int *T, int start, int end){
-    int *temp = new int[end - start + 1];
+    int temp[end - start + 1];
     int mid = (start + end)/2;
     int a = start, b = mid + 1, i = 0;
     while(i<=end - start){
