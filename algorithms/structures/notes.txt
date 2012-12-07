@@ -1,0 +1,1 @@
+Strict dynamic array of;
