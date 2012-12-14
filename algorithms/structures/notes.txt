@@ -1,1 +1,15 @@
-Strict dynamic array of;
+pros of arrays: constant time of access
+
+
+if(elem != head){
+	Node *current = head;
+    while(current -> next != elem){
+    	current = current -> next;
+    }
+    current -> next = elem -> next;
+    delete elem;
+} else{
+	Node *head = head -> next;
+    delete elem;
+    return head;
+}
