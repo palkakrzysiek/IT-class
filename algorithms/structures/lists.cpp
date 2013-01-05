@@ -30,6 +30,15 @@ Node* findNode(Node *head, int x){
     return NULL;
 }
 
+Node* remNode(Node *head, Node *element){
+    Node *current = head;
+    if(element == head){
+
+        head = head->next;
+
+    }
+}
+
 Node* removeNode(Node *head, Node *element){
     if(head == element){
         Node *temp = head;
@@ -57,7 +66,7 @@ int readNode(Node *head, int n){
     int counter = 0;
     while(counter++ != n){
         if(head -> next == NULL){
-            fprintf(stderr, "index outside the offset\n");
+            fprintf(stderr, "index outside of the offset\n");
         }
         else{
         head = head -> next;

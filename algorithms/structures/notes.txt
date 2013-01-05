@@ -13,3 +13,6 @@ if(elem != head){
     delete elem;
     return head;
 }
+
+// 
+Let T be a string of characters (int *T), with 3 types at braces () [] {}, check correctness at
