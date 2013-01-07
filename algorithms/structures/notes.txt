@@ -1,6 +1,4 @@
-pros of arrays: constant time of access
-
-
+// lists.cpp
 if(elem != head){
 	Node *current = head;
     while(current -> next != elem){
@@ -13,6 +11,6 @@ if(elem != head){
     delete elem;
     return head;
 }
-
-// 
+  
+// str_braces.cpp
 Let T be a string of characters (int *T), with 3 types at braces () [] {}, check correctness at
