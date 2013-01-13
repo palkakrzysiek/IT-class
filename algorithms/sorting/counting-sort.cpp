@@ -27,20 +27,30 @@ int maxvalue(int *T, int n){
     }
     return max;
 }
+int minvalue(int *T, int n){
+    int min = T[0];
+    for(int i = 0; i < n; i++){
+        if(T[i] < min)
+            min = T[i];
+    }
+    return min;
+}
 
 void countingsort(int *A, int n){
     int k = maxvalue(A, n);
+    int m = minvalue(A, n);
+    int sep = m < 0 ? -m : 0;
     int *B = new int[n];
-    int *C = new int[k+1];
-    for(int i = 0; i < k+1; i++)
+    int *C = new int[k+sep+1];
+    for(int i = 0; i < k+sep+1; i++)
         C[i] = 0;
     for(int i = 0; i < n; i++)
-        C[A[i]]++;
-    for(int i = 1; i < k+1; i++)
+        C[A[i]+sep]++;
+    for(int i = 1; i < k+1+sep; i++)
         C[i] += C[i-1];
     for(int i = n-1; i >= 0; i--){
-        B[C[A[i]]-1] = A[i];
-        C[A[i]]--;
+        B[C[A[i]+sep]-1] = A[i];
+        C[A[i]+sep]--;
     }
     for(int i = 0; i < n; i++){
         A[i]=B[i];
@@ -53,7 +63,7 @@ int main(int argc, char const* argv[])
 {
     int *temp;
     for(int i = 1; i <= 41; i += 5){
-        temp = getRandomArray(i, 0, 25);
+        temp = getRandomArray(i, -25, 25);
         printarray(temp, i);
         countingsort(temp, i);
         printarray(temp, i);
