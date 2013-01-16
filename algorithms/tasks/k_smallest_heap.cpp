@@ -1,7 +1,14 @@
+/* 2. Let T be an array of floating point numbers, all unique. Using binary heap find k smallest values from T.
+ * void unheap (double*T, int N, int i){
+ * void downheap (double*T, int N, int i){
+ * double*KSmallest (List*L){
+ */
+
 #include <iostream>
 using namespace std;
 
-void printarray(double *A, int n){
+
+void printarray(double *A, int n){ // dla testów
     for(int i = 0; i < n; i++){
         cout << A[i] << ' ';
     }
@@ -22,7 +29,6 @@ void upheap(double *T, int N, int i){
         exchange(T, parent, i);
         upheap(T, N, parent);
     }
-
 }
 
 void downheap (double *T, int N, int i){
@@ -45,14 +51,27 @@ void downheap (double *T, int N, int i){
     }
 }
 
+int KSmallest(double *T, int N, int k){
+    for (int i = N-1; i > 0; i--){
+        upheap(T, N, i);
+    }
+    for (int i = 0; i < k; i++){
+        cout << T[0] << endl;
+        T[0] = T[N-1];
+        N--;
+        downheap(T, N, 0);
+    }
+}
+
 int main(int argc, char const* argv[])
 {
-    double A[] = {4, 5, 3, 8, 9, 2, 1, 0};
+    double A[] = {9, 5.4, 5.2, 8.1, 9, 2, 1, 0.5};
     int size = 8;
+    /*
     printarray(A, size);
     downheap(A, size, 0);
     upheap(A, size, 7);
     printarray(A, size);
-
-    return 0;
+    */
+    KSmallest(A, size, 5);
 }
