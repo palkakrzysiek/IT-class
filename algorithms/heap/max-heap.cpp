@@ -5,14 +5,20 @@ struct HEAP{
     int length;
 };
 
-int parent(int n) {return (n + 1) / 2 - 1;}
-int left(int n) {return 2 * (n + 1) - 1;}
-int right(int n) {return 2 * (n + 1);}
 void exchange(HEAP *T, int a, int b){
     int temp = T->elements[a];
     T->elements[a] = T->elements[b];
     T->elements[b] = temp;
     printf("%d %d\n", a, b);
+}
+inline int left(int n){
+    return n+1;
+}
+inline int right(int n){
+    return n+2;
+}
+inline int parent(int n){
+    return (n-1) / 2;
 }
 
 void maxHeapify(HEAP *T, int N){

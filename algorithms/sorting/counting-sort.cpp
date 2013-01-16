@@ -62,8 +62,8 @@ void countingsort(int *A, int n){
 int main(int argc, char const* argv[])
 {
     int *temp;
-    for(int i = 1; i <= 41; i += 5){
-        temp = getRandomArray(i, -25, 25);
+    for(int i = 1; i <= 71; i += 5){
+        temp = getRandomArray(i, -200, 200);
         printarray(temp, i);
         countingsort(temp, i);
         printarray(temp, i);
