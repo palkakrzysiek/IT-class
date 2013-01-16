@@ -74,4 +74,6 @@ int main(int argc, char const* argv[])
     printarray(A, size);
     */
     KSmallest(A, size, 5);
+
+    return 0;
 }
