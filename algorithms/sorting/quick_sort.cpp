@@ -7,7 +7,7 @@ int* getRandomArray(int n, int min, int max){
     srandom(time(0));
     int *arr = new int[n];
     for (int i = 0; i < n; i++){
-        arr[i] = random() % (max + 1) + min;
+        arr[i] = random() % (max - min + 1) + min;
     }
     return arr;
 }

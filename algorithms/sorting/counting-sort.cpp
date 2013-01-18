@@ -63,7 +63,7 @@ int main(int argc, char const* argv[])
 {
     int *temp;
     for(int i = 1; i <= 71; i += 5){
-        temp = getRandomArray(i, -200, 200);
+        temp = getRandomArray(i, -20, 20);
         printarray(temp, i);
         countingsort(temp, i);
         printarray(temp, i);
