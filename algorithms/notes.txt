@@ -1,0 +1,13 @@
+topics:
+- how to use pointers
+- 'new' and 'delete' operator
+- '*' and '&' operator
+- dynamical variables
+- definition of data structures
+- write struct for particular purpose
+- stacks (there will be given sample of code (implementation isn't required) figure out what is the effect of executing
+  this code), trees
+- ordered trees
+- height of the trees
+- degree - number of children 
+- forest
