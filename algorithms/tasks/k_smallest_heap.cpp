@@ -7,7 +7,6 @@
 #include <iostream>
 using namespace std;
 
-
 void printarray(double *A, int n){ // dla testów
     for(int i = 0; i < n; i++){
         cout << A[i] << ' ';
@@ -52,8 +51,8 @@ void downheap (double *T, int N, int i){
 }
 
 int KSmallest(double *T, int N, int k){
-    for (int i = N-1; i > 0; i--){
-        upheap(T, N, i);
+    for (int i = N/2; i >= 0; i--){
+        downheap(T, N, i);
     }
     for (int i = 0; i < k; i++){
         cout << T[0] << endl;
