@@ -1,0 +1,98 @@
+% vim:encoding=utf8 ft=tex sts=2 sw=2 et:
+
+\documentclass{classrep}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\studycycle{Informatyka, studia dzienne, mgr II st.}
+\coursesemester{III}
+
+%\coursename{Angelologia teoretyczna i stosowana}
+\coursename{Obliczenia inteligentne lub Inteligentna analiza danych}
+\courseyear{2009/2010}
+
+\courseteacher{prof. Bączyński}
+\coursegroup{wtorek, 14:15}
+
+\author{%
+  \studentinfo{Julian Brzechwa}{540282} \and
+  \studentinfo{Jan Mickiewicz}{823941} \and
+  \studentinfo{Adam Tuwim}{561004}
+}
+
+\title{Zadanie 1: Wybrane aspekty niektórych zagadnień}
+\svnurl{http://serce.ics.p.lodz.pl/svn/labs/atis/b_wt1415/grupa/zad1@134}
+
+\begin{document}
+\maketitle
+
+\section{\LaTeX?}
+
+Jeśli skład tego sprawozdania jest jednym z pierwszych kontaktów z
+\LaTeX\dywiz em, warto zapoznać się z ,,Nie za krótkim wprowadzeniem do
+systemu \LaTeX2e''\cite{l2short}.
+
+\section{Instrukcja obsługi szablonu}
+Szablon należy czytelnie wypełnić treścią. Proszę pisać zwięźle i na temat.
+
+Klasa sprawozdania wymaga następujących pakietów:
+\begin{itemize}
+  \item zestaw klas autorstwa Marcina Wolińskiego \ppauza używana jest klasa
+    \emph{mwart} (nazwa całego pakietu: \emph{mwcls}),
+  \item pakiet \emph{polski},
+  \item pakiet \emph{url}.
+\end{itemize}
+
+W preambule należy wykorzystać następujące niestandardowe polecenia, aby
+dostarczyć informacje wymagane do wygenerowania sprawozdania:
+\begin{itemize}
+  \item \verb+\studycycle{...}+ \ppauza tryb i rodzaj studiów,
+  \item \verb+\coursesemester{...}+ \ppauza semestr studiów,
+  \item \verb+\coursename{...}+ \ppauza nazwa przedmiotu,
+  \item \verb+\courseyear{...}+ \ppauza bieżący rok akademicki,
+  \item \verb+\courseteacher{...}+ \ppauza prowadzący laboratoria (proszę
+    wpisywać osobę, której oddaje się sprawozdanie a nie kierownika
+    przedmiotu!),
+  \item \verb+\coursegroup{...}+ \ppauza identyfikator grupy ćwiczeniowej,
+  \item \verb+\studentinfo[e-mail]{imię i nazwisko}{nr albumu}+ \ppauza
+    polecenie wykorzystywane \emph{tylko} w obrębie polecenia \verb+\author+
+    służy do określenia imienia i nazwiska każdego z autorów jak również
+    numeru albumu i opcjonalnie adresu e\dywiz mail; jeśli adres nie jest
+    podawany, należy pominąć argument opcjonalny.
+\end{itemize}
+Można również podać URL do repozytorium zawierającego kod programu. Należy w
+tym celu wykorzystać polecenie \verb+\svnurl{...}+. Jeśli istotne jest
+zaznaczenie numeru rewizji, jej numer należy podać oddzielając go od reszty
+URL-a znakiem \verb+@+. Jeśli repozytorium znajduje się na serwerach Instytutu
+można podać tylko skróconą nazwę, czyli np. \url{serce} zamiast
+\url{serce.ics.p.lodz.pl}.
+
+\paragraph{Uwaga:} po wydrukowaniu proszę nic nie wpisywać w pola
+,,Data oddania'' i ,,Ocena''.
+
+\section{Przydatne pakiety}
+Przy składaniu sprawozdania mogą przydać się pakiety wchodzące w
+skład dystrybucji \TeX\dywiz a. W szczególności warte uwagi są:
+\begin{itemize}
+  \item \emph{amsmath}/\emph{amsfonts} i inne pakiety \emph{ams*} \ppauza
+    zestaw dodatkowych poleceń i~symboli do wykorzystania przy składzie
+    wzorów,
+  \item \emph{algorithm}, \emph{algorithmic} \ppauza skład algorytmów,
+  \item \emph{dcolumn} \ppauza ułatwia skład tabel, w których liczby
+    wyrównywane są do separatora dziesiętnego,
+  \item \emph{enumerate} \ppauza bardziej wyrafinowany skład wyliczeń,
+  \item \emph{graphicx} \ppauza polecenia do włączania grafiki,
+  \item \emph{icomma} \ppauza pozwala na wykorzystanie przecinka jako
+    separatora dziesiętnego w trybie matematycznym,
+  \item \emph{listings} \ppauza skład kodów źródłowych programów,
+  \item \emph{url} \ppauza skład URL-i.
+\end{itemize}
+
+
+
+\begin{thebibliography}{0}
+  \bibitem{l2short} T. Oetiker, H. Partl, I. Hyna, E. Schlegl.
+    \textsl{Nie za krótkie wprowadzenie do systemu \LaTeX2e}, 2007, dostępny
+    online.
+\end{thebibliography}
+\end{document}

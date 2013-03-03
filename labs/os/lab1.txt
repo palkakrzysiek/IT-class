@@ -1,0 +1,7 @@
+VIM editor can be run from terminal (also for example via SSH) or without GUI (or with GUI as GVim).
+VIM is improved version of VI, but ones one get familiar with VIM, he should have no problem to handle VI, which is installed on every (if not - intently) UNIX-like system. 
+VI works in couple models for example Insertion mode, edition mode.
+To enter insertion mode one have to press 'i', 'a' or any other command witch is used to inert text.
+As VIM is more advanced than VI (it was made later, as clone of VI; by the way even VI used on Linux is clone of original VI created as part of UNIX as closed-source program).
+To enter edition mode one need to press ESC key.
+To save file one need to insert in 

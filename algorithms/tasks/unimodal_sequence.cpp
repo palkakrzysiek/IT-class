@@ -19,7 +19,7 @@ bool checkIfSequenceIsUnimodal(int *T, int N){
     // zakresie byłby malejący, kolejna pętla nie zwiększyła by licznika i byłby on na ostatnim elemencie, więc warunek,
     // który jest na końcu funkcji byłby spełniony
     
-    if(N - position < 1) // jeśli nie ma jeszcze choć jednego elementu
+    if(N - position < 2) // jeśli nie ma jeszcze choć jednego elementu (position jest liczony od 0, więc ostatni element to N-1, dlatego nie ma < 1, tylko jest < 2
         return false;
 
     while (T[position] > lastValue){ // dopóki kolejna wartość jest większa od poprzedniej zwiększaj licznik
