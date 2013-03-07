@@ -4,7 +4,7 @@ As VIM is more advanced than VI (it was made later, as clone of VI; by the way e
 VI works in couple models for example Insertion mode, edition mode.
 To start the editor one have to type its name in terminal eg. vim [optional - name of file to edit].
 It is possible to move around the text using keys "h" "k" "l" and ";"
-To enter insertion mode one have to press 'i', 'a' or any other command witch is used to inert text.
+To enter insertion mode one have to press 'i', 'a' or any other command which is used to inert text.
 Key "x" is used to remove single char.
 Combination "d[number of repetitions][direction of move]" eg. "d5j" -  is also used to delete text, "dd" for delete line.
 To enter edition mode one need to press ESC key.
