@@ -2,8 +2,8 @@ VIM editor can be run from terminal (also for example via SSH) without GUI (or w
 VIM is improved version of VI, but ones one get familiar with VIM, he should have no problem to handle VI, which is installed on almost every UNIX-like system. 
 As VIM is more advanced than VI (it was made later, as clone of VI; by the way even VI used on Linux is clone of original VI created as part of UNIX as closed-source program).
 VI works in couple models for example Insertion mode, edition mode.
-To start the editor one have to type its name in terminal ex. vim [optional - name of file to edit].
-It is possible to move around text using keys "h" "k" "l" and ";"
+To start the editor one have to type its name in terminal eg. vim [optional - name of file to edit].
+It is possible to move around the text using keys "h" "k" "l" and ";"
 To enter insertion mode one have to press 'i', 'a' or any other command witch is used to inert text.
 Key "x" is used to remove single char.
 Combination "d[number of repetitions][direction of move]" eg. "d5j" -  is also used to delete text, "dd" for delete line.
@@ -11,7 +11,7 @@ To enter edition mode one need to press ESC key.
 To save file one need to insert in edition mode combination ":w [filename]"; to edit other file ":e [path to file]"
 Key "v" is used to start visual mode mode.
 Key "y" is used to yank (copy) text, "p" to paste. "p" could be used also to paste deleted text. '"+y' to copy to X system's clipboard; '"+p' to paste form clipboard.
-":bdelete" is used to delete current buffer, ":new" to open new window with empty buffer.
+":bdelete" is used to delete current buffer, ":new" to open new window with an empty buffer.
 "/[expression]" to search, ":s/[searched expression]/[substitution]/" to substitute. 
-To quit the window - ":q", to save and close - "wq", to force closing (even with modified buffer) - ":q"
+To quit the window - ":q", to save and close - "wq", to force closing (even with modified buffer) - ":q!"
 All commands stared with colon should be insert in edition mode.
