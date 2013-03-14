@@ -40,7 +40,7 @@ find ~ -type f -name '*~' -delete
 # Task: Write a short script emulating the work of ``ping machine''. The sound ``ping'' can be signalled using ``echo''
 # command (see ``man echo''), one second pause - using ``sleep'' (see ``man sleep'').
 
-while true; do echo -e "PING\a"; sleep 0.1; clear; sleep 0.9; done # if it's possible \a should be interpreted as BEL sound
+while true; do echo -ne "PING\a\r"; sleep 0.2; echo -ne "     \r"; sleep 0.8; done # if it's possible \a should be interpreted as BEL sound
 
 # Problem 2.6 At exit helpful
 # The task is to inform the user being logging out about all processes he is leaving in the system. During main session
@@ -64,7 +64,7 @@ if [ "$(id -u)" != "0" ]; then
    echo ">You Must Run As Root<" 1>&2
    exit 1
 fi
-echo 'while true; do clear; date "+%H:%M:%S"; sleep 1; done' > /usr/bin/showdate
+echo "while true; do echo -en \"\`date '+%H:%M:%S'\`\r\"; sleep 1; done" > /usr/bin/showdate
 chmod a+x /usr/bin/showdate
 # to run script type in terminal "showdate" 
 
