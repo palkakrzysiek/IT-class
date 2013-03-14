@@ -1,0 +1,4 @@
+348. Pytania z teorii : co to jest zjawisko halla,stała halla,gęstość elektronów (przy odchyleniu siły Lorentza) , siła lorentza i wzór na Nią.
+417, musieliśmy opisać zjawiska dyfrakcjii i interferencji.
+421 powiedzieć czym jest kąt Brewstera, dlaczego światło po odbiciu jest spolaryzowane i co drga w fali świetlnej.
+

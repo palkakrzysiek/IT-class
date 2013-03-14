@@ -1,0 +1,10 @@
+Key "x" is used to remove single char.
+Combination "d[number of repetitions][direction of move]" eg. "d5j" -  is also used to delete text, "dd" for delete line.
+To enter edition mode one need to press ESC key.
+To save file one need to insert in edition mode combination ":w [filename]"; to edit other file ":e [path to file]"
+Key "v" is used to start visual mode mode.
+Key "y" is used to yank (copy) text, "p" to paste. "p" could be used also to paste deleted text. '"+y' to copy to X system's clipboard; '"+p' to paste form clipboard.
+":bdelete" is used to delete current buffer, ":new" to open new window with an empty buffer.
+"/[expression]" to search, ":s/[searched expression]/[substitution]/" to substitute. 
+To quit the window - ":q", to save and close - "wq", to force closing (even with modified buffer) - ":q!"
+All commands stared with colon should be insert in edition mode.
