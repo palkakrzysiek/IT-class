@@ -51,7 +51,7 @@ while true; do echo -ne "PING\a\r"; sleep 0.2; echo -ne "     \r"; sleep 0.8; do
 # can be done using ``read'' (see ``man bash''), using which 1 character should be read without echo. Maximal wait time
 # can also be set.
 
-echo 'ps -ejH; read -p "press any key [wait for 10 seconds]" -t 10; clear' >> ~/.bash_logout
+echo 'ps -ejH; read -p "press any key [auto log off in 10 seconds]" -t 10; clear' >> ~/.bash_logout
 chmod a+x ~/.bash_logout
 
 # Problem 2.7 Console clock
