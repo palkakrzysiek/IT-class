@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{float}% If comment this, figure moves to Page 2
 
 \author{Krzysztof~Palka and Dominik~Odrowski}
 \date{March 21, 2013}
@@ -66,7 +67,7 @@ According to figure \ref{fig:tube}
 where $r$ is the radius of the interference ring and $R$ is the radius of the glass bulb.
 Assuming that for small angles of $\theta$: $\sin \alpha = \sin 2 \theta \approx 2 \sin \theta$ we can obtain
 \begin{equation}
-    r = \frac{2R}{d} n \lambda
+    r = \frac{2R}{d} n \lambda \label{eq:r2}
 \end{equation}
 
 \section{Results}
@@ -106,6 +107,36 @@ From equation \ref{eq:bwl2} we can calculate wavelength, assuming that $h = 6.62
         \end{tabular}
     \end{center}
 \end{table}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.60\textwidth]{r-ang1}
+        \caption{graph of radius of first circle versus angle, with measurement uncertainty of angle $\pm 1^{\circ}$ because of resolution protractor}
+        \label{fig:r-ang1}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.60\textwidth]{r-ang2}
+        \caption{graph of radius of second circle versus angle, with measurement uncertainty of angle $\pm 1^{\circ}$ because of resolution protractor}
+        \label{fig:r-ang2}
+    \end{center}
+\end{figure}
+
+Slopes of linear approximations calculated by linear regression for radii are respectively $A_1 = 1.023$ and $A_2 = 0.905$ for first and second graph. From eq. \ref{eq:r2} for n = 1 (higher orders interference rings were invisible) we can obtain formula (\ref{eq:d1}) for values of lattice constants $d_1$ and $d_2$.
+
+\begin{equation}
+    A_i = \frac{2R}{d_i} \label{eq:d1}
+\end{equation}
+
+After transformation.
+
+\begin{equation}
+    d_i = \frac{2R}{A_i}
+\end{equation}
+
+And now we can calculate lattice constants $d_1$ and $d_2$
 
 
 
