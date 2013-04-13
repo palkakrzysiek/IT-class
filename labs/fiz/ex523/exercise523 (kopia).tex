@@ -111,7 +111,7 @@ From equation \ref{eq:bwl2} we can calculate wavelength, assuming that $h = 6.62
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.60\textwidth]{r-ang1}
-        \caption{graph of radius of first circle wavelength}
+        \caption{graph of radius of first circle versus angle, with measurement uncertainty of angle $\pm 1^{\circ}$ because of resolution protractor}
         \label{fig:r-ang1}
     \end{center}
 \end{figure}
@@ -119,12 +119,12 @@ From equation \ref{eq:bwl2} we can calculate wavelength, assuming that $h = 6.62
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.60\textwidth]{r-ang2}
-        \caption{graph of radius of second circle versus wavelength}
+        \caption{graph of radius of second circle versus angle, with measurement uncertainty of angle $\pm 1^{\circ}$ because of resolution protractor}
         \label{fig:r-ang2}
     \end{center}
 \end{figure}
 
-Slopes of linear approximations calculated by linear regression for radii are respectively $A_1 = 5.952$ and $A_2 = 11.245$ with asymptotic standard error +/- 0.6799 (15.96\%) and +/- 0.2401 (5.685\%) for first and second graph. To obtain slopes form ratio of appropriate scale we have to multipli both obtained factors (because of different graph scale) by $10^8$. From eq. \ref{eq:r2} for n = 1 (higher orders interference rings were invisible) we can obtain formula (\ref{eq:d1}) for values of lattice constants $d_1$ and $d_2$.
+Slopes of linear approximations calculated by linear regression for radii are respectively $A_1 = 1.023$ and $A_2 = 0.905$ for first and second graph. To obtain slopes form ratio of meters, not millimeters to radians, not degrees we have to multiply those values by 1000 and divide by $\frac{\pi}{180}$. From eq. \ref{eq:r2} for n = 1 (higher orders interference rings were invisible) we can obtain formula (\ref{eq:d1}) for values of lattice constants $d_1$ and $d_2$.
 
 \begin{equation}
     A_i = \frac{2R}{d_i} \label{eq:d1}
@@ -139,16 +139,16 @@ After transformation.
 Now we can calculate lattice constants $d_1$ and $d_2$
 
 \begin{displaymath}
-    d_1 = \frac{2\cdot 65 \cdot 10^{-3}}{5.952 \cdot 10^{8}} = 2.284 \cdot 10^{-10}\mathrm{m} 
+    d_1 = \frac{2\cdot 65 \cdot 10^{-3}}{1.023 \cdot 10^{3} \cdot \frac{180}{\pi}} = 2.507 \cdot 10^{-10}\mathrm{m} 
 \end{displaymath}
 
 \begin{displaymath}
-    d_2 = \frac{2\cdot 65 \cdot 10^{-3}}{11.245 \cdot 10^{8}} = 1.355 \cdot 10^{-10}\mathrm{m}
+    d_2 = \frac{2\cdot 65 \cdot 10^{-3}}{0.905 \cdot 10^{3} \cdot \frac{180}{\pi}} = 2.217 \cdot 10^{-10}\mathrm{m}
 \end{displaymath}
 
 
 \section{Conclusions}
-As it is shown on figures \ref{fig:r-ang1} and \ref{fig:r-ang2} measured points almost cover linear approximation of graph. It was possible thanks to assumption that for small angles $\sin 2 \theta \approx 2 \sin \theta$. When it comes to comparison to literature values ($d_1$ = 0.213nm and $d_2$ = 0.123nm) \cite{E21}, then obtained values are are similar, even considering fact, that values read from protractor could be not very accurate (rigs of which we measured values were quite wide). 
+As it is shown on figures \ref{fig:r-ang1} and \ref{fig:r-ang2} measured points almost cover linear approximation of graph. It was possible thanks to assumption that for small angles $\sin 2 \theta \approx 2 \sin \theta$. When it comes to comparison to literature values ($d_1$ = 0.213nm and $d_2$ = 0.123nm), then obtained values are respectively 17.3\% and 89.6\% bigger then ideal.
 
 
 \begin{thebibliography}{9}
