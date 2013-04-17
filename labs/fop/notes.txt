@@ -1,0 +1,3 @@
+HW:
+- function that calculate roots of square equation
+- factorial

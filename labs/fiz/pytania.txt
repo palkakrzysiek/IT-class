@@ -1,4 +1,5 @@
-348. Pytania z teorii : co to jest zjawisko halla,stała halla,gęstość elektronów (przy odchyleniu siły Lorentza) , siła lorentza i wzór na Nią.
+346. Najważniejszym pytaniem jest przenikalność. Od czego zalezy co to jest i jak wygląda napięcie miedzy płytkami kondensatora a także od czego zalezy jego pojemnosc; co to są dipole; ferroelektryki; dielektryk, co to jest ferroelektryk, co to jest paraelektryk, Capacitance, permittivity
+348. Pytania z teorii : co to jest zjawisko halla,stała halla,gęstość elektronów (przy odchyleniu siły Lorentza) , siła lorentza i wzór na Nią. Co to jest półprzewodnik. Co to dziura elektronowa.
 417, musieliśmy opisać zjawiska dyfrakcjii i interferencji.
 421 powiedzieć czym jest kąt Brewstera, dlaczego światło po odbiciu jest spolaryzowane i co drga w fali świetlnej.
 418 - > Jaka jest predkosc swiatla?  Co to krzywe Lizaseu (czy jak to sie pisze) Co to wspolczynnik przenikalnosci (chyba).
