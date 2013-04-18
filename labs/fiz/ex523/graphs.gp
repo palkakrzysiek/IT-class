@@ -1,5 +1,6 @@
 set terminal postscript eps enhanced 22        # old epsf2
 set key left top 
+set format x "%.1f"
 set output "r-ang1.eps"
 set title "Radius of first circle depending on wavelength." 
 set xlabel "Wavelength [10^{-21} m]" font "Helvetica,24"

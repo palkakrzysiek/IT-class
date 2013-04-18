@@ -136,19 +136,26 @@ After transformation.
     d_i = \frac{2R}{A_i}
 \end{equation}
 
+Calculation of propagation of uncertainty
+
+\begin{equation}
+    \Delta d_i = \left|\frac{d_i(A_i)}{\mathrm{d} A_i}\right| \cdot |\Delta A_i| = \frac{2R}{(A_i)^2} \cdot \Delta A_i   
+\end{equation}
+
+
 Now we can calculate lattice constants $d_1$ and $d_2$
 
 \begin{displaymath}
-    d_1 = \frac{2\cdot 65 \cdot 10^{-3}}{5.952 \cdot 10^{8}} = 2.284 \cdot 10^{-10}\mathrm{m} 
+    d_1 = \frac{2\cdot 65 \cdot 10^{-3} \mathrm{m}}{5.952 \cdot 10^{8}} \pm  \frac{2\cdot 65 \cdot 10^{-3} \mathrm{m}}{5.952^2 \cdot 10^{16}} \cdot 0.679 \cdot 10^8  = (2.3 \pm 0.3) \cdot 10^{-10}\mathrm{m} 
 \end{displaymath}
+
 
 \begin{displaymath}
-    d_2 = \frac{2\cdot 65 \cdot 10^{-3}}{11.245 \cdot 10^{8}} = 1.355 \cdot 10^{-10}\mathrm{m}
+    d_1 = \frac{2\cdot 65 \cdot 10^{-3} \mathrm{m}}{11.245 \cdot 10^{8}} \pm  \frac{2\cdot 65 \cdot 10^{-3} \mathrm{m}}{11.245^2 \cdot 10^{16}} \cdot 0.240 \cdot 10^8  = (1.4 \pm 0.3) \cdot 10^{-10}\mathrm{m} 
 \end{displaymath}
 
-
 \section{Conclusions}
-As it is shown on figures \ref{fig:r-ang1} and \ref{fig:r-ang2} measured points almost cover linear approximation of graph. It was possible thanks to assumption that for small angles $\sin 2 \theta \approx 2 \sin \theta$. When it comes to comparison to literature values ($d_1$ = 0.213nm and $d_2$ = 0.123nm) \cite{E21}, then obtained values are are similar, even considering fact, that values read from protractor could be not very accurate (rigs of which we measured values were quite wide). 
+As it is shown on figures \ref{fig:r-ang1} and \ref{fig:r-ang2} measured points almost cover linear approximation of graph. Moreover, for obtained uncertainties, results cover data available in literature. It was possible thanks to assumption that for small angles $\sin 2 \theta \approx 2 \sin \theta$. When it comes to comparison to literature values ($d_1$ = 0.213nm and $d_2$ = 0.123nm) \cite{E21}, then obtained values are are similar, even considering fact, that values read from protractor could be not very accurate (rigs of which we measured values were quite wide). 
 
 
 \begin{thebibliography}{9}
