@@ -209,6 +209,14 @@ In analogous way we can find size of slits. For this purpose we would use equati
     a \sin \theta = m \lambda \qquad \textrm{for $m$ = 1, 2, 3,\dots (minima - dark fringers)} \label{eq:imin1}
 \end{equation}
 
+Due to resolution of displacement setter $\Delta \theta = \pm 0.2$ mrad propagation of error would be
+
+\begin{equation}
+    \Delta d = \left| \frac{d(\theta)}{\mathrm{d} \theta} \right| \cdot \Delta \theta =\frac{m \lambda}{\sin^2 \theta} \cdot \cos \theta \cdot \Delta \theta
+\end{equation}
+
+
+
 
 Calculation of first 2 minima and maxima (that is all we managed to measured), calculation of average and standard derivation gives following results
 
@@ -220,8 +228,6 @@ Calculation of first 2 minima and maxima (that is all we managed to measured), c
     a = (3.0 \pm 0.2) \cdot 10^{-4} \, \mathrm{m}
 \end{displaymath}
 
-
-And now, when we got approximate values of $a$ and $d$, we can put them to equation \ref{eq:IvsTheta} and get approximate plot of brightness of fringes made by used diffraction grading.
 
 \section{Conclusions}
 The most noticeable element of this report is plot of intensity of light. More precisely - its lack of symmetry. It could be caused by fast discharging of battery - during measurement of the lightest fringes there was quite high current in circuit, and decrement of read current has begun at that moment. The other reason could be need of change scale of multimeter (this moment can be noticed when we look on uncertainties in the table with results). But even in this situation local maxima and minima was symmetric according to axis that indicated angle. And if size of detector is consider - it can influent on results. When we look at plot of intensity we can notice, that there is smooth transition between values and bigger detector can catch some light not intended for particular angle.       

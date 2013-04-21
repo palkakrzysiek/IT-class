@@ -1,0 +1,79 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{textcomp}
+
+\author{Krzysztof~Palka}
+
+\title{\textsc{Exercise} 3 \\ Linux installation} 
+
+\addtolength{\textwidth}{2.5cm}
+\addtolength{\hoffset}{-1.25cm}
+
+
+\begin{document}
+
+    \maketitle
+
+    \begin{abstract}
+        This report presents process of installation and configuration of Linux system on virtual machine. 
+    \end{abstract}
+
+	\section{Introduction}
+    I will use VirtualBox program as virtual machine and Fedora 32-bit Linux distribution. VirtualBox packages are are available at https://www.virtualbox.org/wiki/Downloads and List of Fedora packages here: http://mirrors.fedoraproject.org/publiclist/Fedora/18/. I'm downloading i386 distribution which stands for 32 bit version.  
+
+    \section{Preparation of virtual machine}
+    I'm installing VirtualBox and creating new machine with following parameters
+    \begin{description}
+        \item[Name] Fedora
+        \item[Memory] 768 MB
+        \item[Disk file type] VDI
+        \item[Disk storage details] Dynamically allocated
+        \item[Disk size] 10 GB
+    \end{description}
+    
+    I'm setting downloaded iso file as start disk and starting machine.
+    \section{Installation}
+    I'm choosing \emph{Install Fedora}. During verification of installation media I'm pressing \emph{Esc}, to skip this proces.
+    I'm choosing default language and going to partitioning section by clicking on disk icon. As \emph{Partition type} I'm choosing \emph{Standard Partition} and selecting \emph{Let me customize the partitioning of the disks instead.}    
+    I'm adding new partition---root---by typing \emph{/} as \emph{Mount Point} and \emph{2GB} as \emph{Desired capacity}. 
+    In \emph{customize} section I'm choosing: 
+    \begin{description}
+        \item[Device Type] Standard Partition
+        \item[File System] ext4
+    \end{description}
+    
+    And applying changes. In analogous way I'm adding following partitions:
+    \begin{description}
+        \item [/boot] 500 MB
+        \item [/home] 500 MB
+        \item [/tmp] 500 MB
+        \item [/usr] 4 GB
+        \item [/var] 2 GB
+    \end{description}
+    And finally I'm adding swap partition for remaining space by typing \emph{swap} in \emph{Mount Point} and leaving \emph{Desired capacity} field empty.
+    I'm clicking \emph{Finish Partitioning} and then \emph{Software selection}. As environment I'm choosing \emph{Minimal Install}, clicking \emph{Done} and \emph{Begin Installation}.
+    I'm setting root password and finishing configuration and clicking \emph{reboot}. After reboot of VM I'm unchecking Fedora installation iso file (Devices $\rightarrow$ CD/DVD) and rebooting it again. 
+    
+    \section{Basic Configuration}
+    
+    When system boot I'm logging in as \emph{root} and typing following commands: 
+    \lstset{showspaces=true,
+            language=sh,
+            numbers=left,
+            upquote=true}
+\begin{lstlisting}[frame=single]
+ln -sf /lib/systemd/system/multi-user.target\
+/etc/systemd/system/default.target
+\end{lstlisting}
+
+According to informations placed in file /etc/inittab system uses 'tagets' instead of runlevels, so I'm changing default runlevel by taping ln -s /lib/systemd/system/<target name>.target 
+/etc/systemd/system/default.target, where <target name> could be multi-user for runlevels 3 or graphical for runlevel 5. 
+
+
+\end{document}
