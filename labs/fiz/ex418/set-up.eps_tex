@@ -1,0 +1,117 @@
+%% Creator: Inkscape inkscape 0.48.3.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'set-up.eps' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{351.72763279bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.591232)%
+    \put(0,0){\includegraphics[width=\unitlength]{set-up.eps}}%
+    \put(0.50102861,0.40650919){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.49488747,0.38467466){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.5003463,0.38774467){\makebox(0,0)[lb]{\smash{-f}}}%
+    \put(0.5098991,0.38467466){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.51535786,0.38774467){\makebox(0,0)[lb]{\smash{=50kHz
+z
+f}}}%
+    \put(0.49488747,0.03770173){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.5003463,0.04077168){\makebox(0,0)[lb]{\smash{-f}}}%
+    \put(0.5098991,0.03770173){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.51535786,0.04077168){\makebox(0,0)[lb]{\smash{=50kHz
+
+generator
+f}}}%
+    \put(0.60099235,0.25878184){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.60645111,0.26185179){\makebox(0,0)[lb]{\smash{=50.}}}%
+    \put(0.63715669,0.26185179){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.64568671,0.26185179){\makebox(0,0)[lb]{\smash{0MHz
+f}}}%
+    \put(0.39151207,0.20931175){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.39697082,0.21238169){\makebox(0,0)[lb]{\smash{=50.05MHz
+generator}}}%
+    \put(0.4211941,0.08853619){\makebox(0,0)[lb]{\smash{ϕ}}}%
+    \put(0.50955794,0.35669877){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.51331083,0.35533385){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.51774611,0.35669877){\makebox(0,0)[lb]{\smash{-f}}}%
+    \put(0.52559305,0.35533385){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.55493399,0.3338402){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.55868688,0.33247522){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.52832246,0.30722867){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.53207535,0.30586369){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.6153216,0.49009743){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.61907449,0.48873251){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.62350976,0.49009743){\makebox(0,0)[lb]{\smash{/}}}%
+    \put(0.627263,0.49009743){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.63442721,0.49009743){\makebox(0,0)[lb]{\smash{000
+f}}}%
+    \put(0.64261544,0.43926235){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.52832246,0.13937147){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.53207535,0.13800656){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.55493399,0.11275967){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.55868688,0.11139503){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.50955794,0.08990138){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.51331083,0.08853646){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.51774611,0.08990138){\makebox(0,0)[lb]{\smash{-f}}}%
+    \put(0.52559305,0.08853646){\makebox(0,0)[lb]{\smash{2}}}%
+    \put(0.32634802,0.35328614){\makebox(0,0)[lb]{\smash{XYf}}}%
+    \put(0.32873621,0.48361485){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.33453612,0.48668487){\makebox(0,0)[lb]{\smash{/}}}%
+    \put(0.33897154,0.48668487){\makebox(0,0)[lb]{\smash{1}}}%
+    \put(0.34750156,0.48668487){\makebox(0,0)[lb]{\smash{000
+X
+Y}}}%
+    \put(0.12335001,0.48668487){\makebox(0,0)[lb]{\smash{f}}}%
+    \put(0.03211057,0.51929628){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{frequency meter}}}%
+    \put(0.03169983,0.32566619){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{oscilloscope}}}%
+    \put(0.64295049,0.535244){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{frequency
+devider}}}%
+    \put(0.50816068,0.40502225){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{mixer}}}%
+    \put(0.42199754,0.05960783){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{phase shift
+setter}}}%
+    \put(0.50934672,0.0579003){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{mixer}}}%
+    \put(0.61251097,0.06033721){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{amplifier}}}%
+  \end{picture}%
+\endgroup%

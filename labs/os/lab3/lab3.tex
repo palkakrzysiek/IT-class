@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage{listings}
 \usepackage{textcomp}
+\usepackage{hyperref}
 
 \author{Krzysztof~Palka}
 
@@ -20,12 +21,20 @@
 
     \maketitle
 
+    \lstset{showspaces=false,
+            showlines=false, 
+            language=sh,
+            numbers=left,
+            firstnumber=last,
+            breaklines=true,
+            upquote=true}
+
     \begin{abstract}
         This report presents process of installation and configuration of Linux system on virtual machine. 
     \end{abstract}
 
 	\section{Introduction}
-    I will use VirtualBox program as virtual machine and Fedora 32-bit Linux distribution. VirtualBox packages are are available at https://www.virtualbox.org/wiki/Downloads and List of Fedora packages here: http://mirrors.fedoraproject.org/publiclist/Fedora/18/. I'm downloading i386 distribution which stands for 32 bit version.  
+    I will use VirtualBox program as virtual machine and Fedora 32-bit Linux distribution. VirtualBox packages are are available at \url{https://www.virtualbox.org/wiki/Downloads} and List of Fedora packages here: \url{http://mirrors.fedoraproject.org/publiclist/Fedora/18/}. I'm downloading i386 distribution which stands for 32 bit version.  
 
     \section{Preparation of virtual machine}
     I'm installing VirtualBox and creating new machine with following parameters
@@ -59,21 +68,59 @@
     And finally I'm adding swap partition for remaining space by typing \emph{swap} in \emph{Mount Point} and leaving \emph{Desired capacity} field empty.
     I'm clicking \emph{Finish Partitioning} and then \emph{Software selection}. As environment I'm choosing \emph{Minimal Install}, clicking \emph{Done} and \emph{Begin Installation}.
     I'm setting root password and finishing configuration and clicking \emph{reboot}. After reboot of VM I'm unchecking Fedora installation iso file (Devices $\rightarrow$ CD/DVD) and rebooting it again. 
-    
+
+    When system boot I'm logging in as \emph{root} and typing following commands: 
+    \begin{lstlisting}[frame=single]
+cat /proc/mounts
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda1
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda2
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda3
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda4
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda5
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda6
+tune2fs -c 10 -i 2m -e remount-ro /dev/sda7
+tune2fs -l /dev/sda1
+    \end{lstlisting}
+    cat /proc/mounts shows current mount options. tune2fs is used to adjust tunable filesystem parameters on filesystems. I used following arguments: 
+
+    \begin{description}
+        \item [-c 10] Adjust the maximal mounts count between two filesystem checks to 10.
+        \item [-i 2m] Adjust the maximal time between two filesystem checks to 2 months.
+        \item [-e remount-ro] Change the behavior of the kernel code when errors are detected. Remount filesystem read-only.
+        \item [/dev/sda\emph{N}] Device name.
+        \item [-l] List the contents of the filesystem superblock (To check).
+    \end{description}
+
     \section{Basic Configuration}
     
-    When system boot I'm logging in as \emph{root} and typing following commands: 
-    \lstset{showspaces=true,
-            language=sh,
-            numbers=left,
-            upquote=true}
-\begin{lstlisting}[frame=single]
-ln -sf /lib/systemd/system/multi-user.target\
-/etc/systemd/system/default.target
-\end{lstlisting}
 
-According to informations placed in file /etc/inittab system uses 'tagets' instead of runlevels, so I'm changing default runlevel by taping ln -s /lib/systemd/system/<target name>.target 
+    According to informations placed in file /etc/inittab system uses 'tagets' instead of runlevels, so I'm changing default runlevel by taping ln -s /lib/systemd/system/<target name>.target 
 /etc/systemd/system/default.target, where <target name> could be multi-user for runlevels 3 or graphical for runlevel 5. 
+
+    \begin{lstlisting}[frame=single]
+ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+    \end{lstlisting}
+    To check all groups on system
+    \begin{lstlisting}[frame=single]
+cat /etc/group
+    \end{lstlisting}
+    To add new group 
+    \begin{lstlisting}[frame=single]
+groupadd students
+    \end{lstlisting}
+    To create new user, and add him to groups: [username], wheel (for possibility to use sudo), users and students. 
+    \begin{lstlisting}[frame=single]
+adduser -U -G wheel,users,students krzysiek
+passwd krzysiek
+id krzysiek # to check
+    \end{lstlisting}
+    To configure  DHCP Client
+    \begin{lstlisting}[frame=single]
+echo 'NETWORKING=yes' > /etc/sysconfig/network 
+echo 'DEVICE=p2p1' > /etc/sysconfig/network-scripts/ifcfg-p2p1 
+echo 'BOOTPROTO=dhcp' >> /etc/sysconfig/network-scripts/ifcfg-p2p1 
+echo 'ONBOOT=yes' >> /etc/sysconfig/network-scripts/ifcfg-p2p1 
+    \end{lstlisting}
 
 
 \end{document}
