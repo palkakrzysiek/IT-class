@@ -121,6 +121,110 @@ echo 'DEVICE=p2p1' > /etc/sysconfig/network-scripts/ifcfg-p2p1
 echo 'BOOTPROTO=dhcp' >> /etc/sysconfig/network-scripts/ifcfg-p2p1 
 echo 'ONBOOT=yes' >> /etc/sysconfig/network-scripts/ifcfg-p2p1 
     \end{lstlisting}
+    To add users tytus, romek and atomek
+    \begin{lstlisting}[frame=single]
+useradd -G users tytus # add user to group users 
+useradd -G users romek 
+useradd -G users atomek 
+passwd tytus # set password
+passwd romek
+passwd atomek
+passwd -x 30 tytus # set expiration date of password  
+passwd -x 30 romek 
+passwd -x 30 atomek 
+chage -l romek # check password expiration date
+    \end{lstlisting}
+    To add temporary group \emph{operators} and add user \emph{romek} to this group
+    \begin{lstlisting}[frame=single]
+groupadd operators 
+gpasswd -a romek operators
+groups romek # to check if user romek belongs to group operators
+    \end{lstlisting}
+    To create variable \emph{LOGINTIME} available for every user (\emph{export} makes the variable available to sub-processes)
+    \begin{lstlisting}[frame=single]
+echo "export LOGINTIME=\"$(date -u +'%T')\"" >> /etc/profile
+logout #then login, for example as romek
+echo $LOGINTIME # to check if variable exist
+    \end{lstlisting}
+    Now, I'm logging of and logging in as root again. To make user tytus able to use shutdown command without giving password using sudo 
+    \begin{lstlisting}[frame=single]
+echo "tytus ALL = (ALL) NOPASSWD:/sbin/shutdown" >> /etc/sudoers
+logout # then login as tytus 
+sudo vi # to check if other programs require password, then press Ctrl-C before typing password to exit sudo 
+sudo shutdown -h # to check if shutdown require password
+    \end{lstlisting}
+    I'm starting VM and logging in as root again. To find statically linked programs (almost every is linked dynamically) and compare their sizes
+    \begin{lstlisting}[frame=single]
+find /sbin/ -executable -type f -exec file {} \; | grep "statically linked"
+stat `which grep`
+stat /sbin/ldconfig
+    \end{lstlisting}
+    To synchronize time with external time server when the system is idle
+    \begin{lstlisting}[frame=single]
+yum install at # to run batch
+batch # will start at prompt 
+ntpd -I ntp.itl.waw.pl
+    \end{lstlisting}
+    To update all packages
+    \begin{lstlisting}[frame=single]
+yum update
+    \end{lstlisting}
+    To check for any given file from which package it was installed
+    \begin{lstlisting}[frame=single]
+rpm -qf `which sh`
+    \end{lstlisting}
+
+    \section{Additional requirements}
+    To install SSH server
+    \begin{lstlisting}[frame=single]
+yum install openssh-server
+    \end{lstlisting}
+    As it has been mentioned, this version of system don't uses runlevels anymore and during installation appropriate target (equivalent of runlevels) is created. To generate rsh key
+    \begin{lstlisting}[frame=single]
+ssh-keygen -t rsa
+    \end{lstlisting}
+    I didn't change the default folder (/root/.ssh/id\_rsa) and set empty phasephras. I copied generated keys to files with authorized key for every user.
+    \begin{lstlisting}[frame=single]
+mkdir /home/tytus/.ssh # create appropriate folders for other users
+mkdir /home/romek/.ssh 
+mkdir /home/atomek/.ssh
+cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+cat /root/.ssh/id_rsa.pub > /home/tytus/.ssh/authorized_keys
+cat /root/.ssh/id_rsa.pub > /home/romek/.ssh/authorized_keys
+cat /root/.ssh/id_rsa.pub > /home/atomek/.ssh/authorized_keys
+    \end{lstlisting}
+    To disable requirement of giving password for users of group 'root' or for those using sudo (wheel group)
+    \begin{lstlisting}[frame=single]
+echo -e "Match Group wheel\nPasswordAuthentication no" >> /etc/ssh/sshd_config
+    \end{lstlisting}
+    To check if it works 
+    \begin{lstlisting}[frame=single]
+ssh romek@localhost # root user should be able to login without giving password
+logout # to close connection
+logout # to logout root user, then login for example as romek and:
+shh root@localhost # now password should be required
+    \end{lstlisting}
+    %Since I've installed ssh I can login onto virtual machine via this protocol. In bottom bar of VBox window I'm opening network interfaces, clicking on \emph{Port Forwarding} and setting following options.
+
+    \section{Additional requirements}
+    To install manual downloaded package (in this case nano)  
 
 
+    \begin{lstlisting}[frame=single]
+yum install wget # to download files
+wget http://www.nano-editor.org/dist/v2.2/RPMS/nano-2.2.6-1.i386.rpm
+rpm -i 
+nano-2.2.6-1.i386.rpm
+    \end{lstlisting}
+
+    To limit the number of processes that may be run simultaneously by a user belonging to users group to 10.
+
+    \begin{lstlisting}[frame=single]
+echo "@users soft nproc 10" >> /etc/security/limits.conf
+    \end{lstlisting}
+
+    Automatic logout after 5 minutes of inactivity.
+    \begin{lstlisting}[frame=single]
+echo "export TMOUT=300" >> /etc/profile
+    \end{lstlisting}
 \end{document}
