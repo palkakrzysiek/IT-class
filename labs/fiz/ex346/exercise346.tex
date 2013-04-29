@@ -1,0 +1,154 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{float}% If comment this, figure moves to Page 2
+\usepackage{hyperref}
+\usepackage{lipsum}
+
+\author{Krzysztof~Palka and Dominik~Odrowski}
+\date{April 25, 2013}
+
+\title{\textsc{Exercise} 346 \\ Examination of permittivity of ferroelectricity} 
+
+\addtolength{\textwidth}{2.5cm}
+\addtolength{\hoffset}{-1.25cm}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{abstract}
+        This report presents measurement of the permittivity of ferroelectricity material using parallel-plate capacitor.
+    \end{abstract}
+
+    \section{Introduction}
+    \lipsum[1]
+
+    \section{Theory and measurement}
+
+    \begin{equation}
+        \epsilon = \frac{d C}{S \epsilon_0} \label{eq:epsilon}
+    \end{equation}
+    
+    \begin{equation}
+        \epsilon = \frac{K}{T-T_c} \label{eq:curie}
+    \end{equation}
+    
+    \begin{equation}
+        \frac{1}{\epsilon} = \frac{1}{K} T - \frac{T_c}{K} \label{eq:curie2}
+    \end{equation}
+    
+    \begin{equation}
+        \frac{1}{\epsilon} = mT + b \label{eq:curie3}
+    \end{equation}
+    
+    \begin{equation}
+        K = \frac{1}{m} \label{eq:k}
+    \end{equation}
+    
+    \begin{equation}
+        T_c = - K b \label{eq:tc}
+    \end{equation}
+    
+
+    \section{Results}
+
+    For calculation of $\epsilon$ we have used following parameters read form experimental set-up: $S = 89 \mathrm{mm}^2$, $d = 1.1$ mm. To read capacitance we have added additional capacitance form electric connections, meters etc. This value also was given and was equal approximately 48 pF.  
+
+
+    \begin{table}[H]
+        \begin{center}
+            \caption{Measured temperature $T$, capacitance $C$ and calculated permittivity $\epsilon$ and inverse of permittivity $\epsilon^{-1}$}
+            \label{tab:vn}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                $T$ [K] & $C$ [pF] & $\epsilon$ & $\epsilon^{-1}$ [$10^{-3}$] \\ \hline
+                342.5 & 127.2 & 242.0 & 4.133\\
+                340.5 & 130.4 & 246.4 & 4.059\\
+                338.5 & 144.5 & 265.9 & 3.762\\
+                336.5 & 150.0 & 273.4 & 3.657\\
+                334.5 & 165.9 & 295.4 & 3.385\\
+                332.5 & 184.5 & 321.1 & 3.114\\
+                330.5 & 217.0 & 366.0 & 2.732\\
+                328.5 & 255.2 & 418.7 & 2.388\\
+                326.5 & 325.5 & 515.8 & 1.939\\
+                324.5 & 436.9 & 669.7 & 1.493\\
+                322.5 & 883.5 & 1286.4 & 0.777\\
+                320.5 & 2197.0 & 3100.4 & 0.323\\
+                318.5 & 1573.1 & 2238.8 & 0.447\\
+                316.5 & 1304.6 & 1868.0 & 0.535\\
+                314.5 & 1136.6 & 1636.0 & 0.611\\
+                312.5 & 1009.4 & 1460.3 & 0.685\\
+                310.5 & 911.9 & 1325.7 & 0.754\\
+                308.5 & 833.8 & 1217.8 & 0.821\\
+                306.5 & 765.8 & 1123.9 & 0.890\\
+                304.5 & 715.6 & 1054.6 & 0.948\\
+                302.5 & 672.7 & 995.3 & 1.005\\
+                301.1 & 636.3 & 945.0 & 1.058\\
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+
+    \begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{epsilon}
+        \caption{Graph of permittivity for measured temperature}
+        \label{fig:epsilon}
+    \end{center}
+    \end{figure}
+
+    \begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{epsilon-1}
+        \caption{Graph of inverse of permittivity for measured temperature}
+        \label{fig:epsilon-1}
+    \end{center}
+    \end{figure}
+
+    Usage od least square regression for paraelectric state of of material gives factors $m = (-3.6 \pm 0.2) \cdot 10^{-2}$ and $b = (1.19 \pm 0.03) \cdot 10^{-1} \mathrm{K}$. Substituting those values to equations \ref{eq:k} and \ref{eq:tc}, we have obtained results:
+
+    \begin{displaymath}
+        K = \frac{1}{-3.6 \cdot 10^{-2}} \approx -2.7 \cdot 10^3    
+    \end{displaymath}
+
+    and 
+
+    \begin{displaymath}
+        T_c = -1 \cdot -2.7 \cdot 10^3 \cdot 1.19 \cdot 10^{-1} \mathrm{K} \approx 321 \mathrm{K}
+    \end{displaymath}
+
+    Propagation of error can be calculated form equations: 
+
+    \begin{equation}
+        \Delta K = K \frac{\Delta a}{a}
+    \end{equation}
+    
+    \begin{equation}
+        \Delta T_c = T_c \left( \frac{\Delta K}{K} + \frac{\Delta b}{|b|} \right)
+    \end{equation}
+    
+    So complete results are as following
+
+    \begin{displaymath}
+        K = (-2.7 \pm 0.2) \cdot 10^3
+    \end{displaymath}
+    
+    \begin{displaymath}
+        T_c = 321 \pm 1 K
+    \end{displaymath}
+    
+
+
+    \section{Conclusions}
+
+    As we can observe on graph \ref{fig:epsilon-1} temperature of phase transition calculated from linear approximation by least squares method seems to be true in real results. 
+
+
+
+\end{document}
