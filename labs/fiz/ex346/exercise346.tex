@@ -90,6 +90,7 @@
         \end{center}
     \end{table}
 
+    For linear approximation we have used points form 320.5 K to 332.5 K.
 
     \begin{figure}[H]
     \begin{center}
@@ -107,16 +108,19 @@
     \end{center}
     \end{figure}
 
-    Usage of least square regression for paraelectric state of of material gives factors $m = (-3.6 \pm 0.2) \cdot 10^{-2}$ and $b = (1.19 \pm 0.03) \cdot 10^{-1} \mathrm{K}$. Substituting those values to equations \ref{eq:k} and \ref{eq:tc}, we have obtained results:
+    Usage of least square regression for paraelectric state of of material gives
+    factors $m = (2.4 \pm 0.2) \cdot 10^{-1}$ and $b = (12.0 \pm 0.4) \mathrm{K}$.
+    Substituting those values to equations \ref{eq:k} and \ref{eq:tc}, we have
+    obtained results:
 
     \begin{displaymath}
-        K = \frac{1}{-3.6 \cdot 10^{-2}} \approx -2.7 \cdot 10^3    
+        K = \frac{1}{2.4 \cdot 10^{-4}} \approx 4.166 \cdot 10^3    
     \end{displaymath}
 
     and 
 
     \begin{displaymath}
-        T_c = -1 \cdot -2.7 \cdot 10^3 \cdot 1.19 \cdot 10^{-1} \mathrm{K} \approx 321 \mathrm{K}
+        T_c = -1 \cdot 4.166 \cdot 10^3 \cdot 7.5 \cdot 10^{-2} \mathrm{K} \approx 312.5 \mathrm{K}
     \end{displaymath}
 
     Propagation of error can be calculated form equations: 
@@ -132,18 +136,26 @@
     So complete results are as following
 
     \begin{displaymath}
-        K = (-2.7 \pm 0.2) \cdot 10^3
+        K = (4.2 \pm 0.4) \cdot 10^3
     \end{displaymath}
     
     \begin{displaymath}
-        T_c = 321 \pm 1 K
+        T_c = (3.1 \pm 0.5) \cdot 10 ^ 2 K
     \end{displaymath}
     
 
 
     \section{Conclusions}
 
-    As we can observe on graph \ref{fig:epsilon-1} temperature of phase transition calculated from linear approximation by least squares method seems to be true in real results. Unfortunately we couldn't find any ferroelectric with such Curie temperature. The nearest was made of arsen and mangan (MnAs) and had temperature 318 K \cite{res}, so either our results was not as accurate as it follows from uncertainty or we had examined different material. There was couple factors that inflated on results, for example precision of termometr, location of it sensor, additional capacitance of set-up. Using formula for capacitor with 2 parallel plates could affect result, but not in significant way. Other reason could be not sufficient resolution of measurement, 2 K in this case could led to bigger errors.  
+    As we can observe on graph \ref{fig:epsilon-1} even though we have chose
+    those points, which seemed to be quite linear, obtained uncertainty is 
+    huge. We have found 2 possible materials with such Curie temperature: 
+    Gd (gadolinium, 293K) and MnAs (combination of arsen and mangan, 318K)
+    \cite{res}. There was couple factors that inflated on results, for example
+    precision of termometr, location of it sensor, additional capacitance of
+    set-up. Using formula for capacitor with 2 parallel plates could affect
+    result, but not in significant way. Other reason could be not sufficient
+    resolution of measurement, 2 K in this case could led to bigger errors.  
 
     \begin{thebibliography}{9}
 
