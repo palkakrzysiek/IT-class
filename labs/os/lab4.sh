@@ -9,7 +9,6 @@ VERSION="1.0"
 AUTHOR="Krzysztof Palka, IT, 181427"
 DATE="May 10, 2013"
 HELP="Usage:\
-
  ${BOLD}${0}${NORMAL} ${ITALIC}user's_file${NORMAL} ${ITALIC}opponent's_file${NORMAL} [${ITALIC}username${NORMAL}];\
  ${BOLD}${0}${NORMAL} [${ITALIC}OPTIONS${NORMAL}] $NORMAL
     OPTIONS:
@@ -31,10 +30,10 @@ for ((i=1;i<=$#;i++)); do
         exit 0
     fi
     if [[ $i == 1 ]]; then
-        USERFILEPATH=${!i}
+        USERFILEPATH="/tmp/${!i}"
     fi
     if [[ $i == 2 ]]; then
-        OPPONETFILEPATH=${!i}
+        OPPONETFILEPATH="/tmp/${!i}"
     fi
     if [[ $i == 3 ]]; then 
         if [[ ! ${!i} =~ [\ \t]+ ]]; then

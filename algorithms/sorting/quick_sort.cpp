@@ -2,10 +2,10 @@
 #include <cstdio>
 #include <cstdlib>
 
-int* getRandomArray(int n, int min, int max){
+int** getRandomArray(int n, int min, int max){
     // require ctime and cstdlib 
     srandom(time(0));
-    int *arr = new int[n];
+    int **arr = new int[n][n];
     for (int i = 0; i < n; i++){
         arr[i] = random() % (max - min + 1) + min;
     }

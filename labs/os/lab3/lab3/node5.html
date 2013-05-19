@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Additional requirements</TITLE>
+<META NAME="description" CONTENT="Additional requirements">
+<META NAME="keywords" CONTENT="lab3">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="lab3.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="lab3.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html61"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html59"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html53"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html62"
+  HREF="node6.html">Additional requirements</A>
+<B> Up:</B> <A NAME="tex2html60"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html54"
+  HREF="node4.html">Basic Configuration</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00050000000000000000">
+Additional requirements</A>
+</H1>
+    To install SSH server
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.png"
+ ALT="\begin{lstlisting}[frame=single]
+yum install openssh-server
+\end{lstlisting}">
+<BR>
+As it has been mentioned, this version of system don't uses runlevels anymore and during installation appropriate target (equivalent of runlevels) is created. To generate rsh key
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img17.png"
+ ALT="\begin{lstlisting}[frame=single]
+ssh-keygen -t rsa
+\end{lstlisting}">
+<BR>
+I didn't change the default folder (/root/.ssh/id_rsa) and set empty phasephras. I copied generated keys to files with authorized key for every user.
+    <BR>
+<IMG
+ WIDTH="755" HEIGHT="173" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.png"
+ ALT="\begin{lstlisting}[frame=single]
+mkdir /home/tytus/.ssh  ...">
+<BR>
+To disable requirement of giving password for users of group 'root' or for those using sudo (wheel group)
+    <BR>
+<IMG
+ WIDTH="878" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo -e ''Match Group wheel\nPasswordAuthentication no'' &gt;&gt; /etc/ssh/sshd_config
+\end{lstlisting}">
+<BR>
+To check if it works 
+    <BR>
+<IMG
+ WIDTH="890" HEIGHT="104" ALIGN="BOTTOM" BORDER="0"
+ SRC="img20.png"
+ ALT="\begin{lstlisting}[frame=single]
+ssh romek@localhost  ...">
+<BR>
+    
+<P>
+<BR><HR>
+<ADDRESS>
+Krzysiek
+2013-05-14
+</ADDRESS>
+</BODY>
+</HTML>

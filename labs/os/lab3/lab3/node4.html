@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Basic Configuration</TITLE>
+<META NAME="description" CONTENT="Basic Configuration">
+<META NAME="keywords" CONTENT="lab3">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="lab3.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="lab3.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html51"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html49"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html43"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html52"
+  HREF="node5.html">Additional requirements</A>
+<B> Up:</B> <A NAME="tex2html50"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html44"
+  HREF="node3.html">Installation</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00040000000000000000">
+Basic Configuration</A>
+</H1>
+
+<P>
+According to informations placed in file /etc/inittab system uses 'tagets' instead of runlevels, so I'm changing default runlevel by taping ln -s /lib/systemd/system/&lt;target name&gt;.target 
+/etc/systemd/system/default.target, where &lt;target name&gt; could be multi-user for runlevels 3 or graphical for runlevel 5. 
+
+<P>
+<BR>
+<IMG
+ WIDTH="888" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="\begin{lstlisting}[frame=single]
+ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+\end{lstlisting}">
+<BR>
+To check all groups on system
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="\begin{lstlisting}[frame=single]
+cat /etc/group
+\end{lstlisting}">
+<BR>
+To add new group 
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img5.png"
+ ALT="\begin{lstlisting}[frame=single]
+groupadd students
+\end{lstlisting}">
+<BR>
+To create new user, and add him to groups: [username], wheel (for possibility to use sudo), users and students. 
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="\begin{lstlisting}[frame=single]
+adduser -U -G wheel,users,students krzysiek
+passwd krzysiek
+id krzysiek  ...">
+<BR>
+To configure  DHCP Client
+    <BR>
+<IMG
+ WIDTH="743" HEIGHT="104" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo 'NETWORKING=yes' &gt; /etc/sysconfig/network ...
+...cho 'ONBOOT=yes' &gt;&gt; /etc/sysconfig/network-scripts/ifcfg-p2p1
+\end{lstlisting}">
+<BR>
+To add users tytus, romek and atomek
+    <BR>
+<IMG
+ WIDTH="587" HEIGHT="242" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="\begin{lstlisting}[frame=single]
+useradd -G users tytus  ...">
+<BR>
+To add temporary group <SPAN  CLASS="textit">operators</SPAN> and add user <SPAN  CLASS="textit">romek</SPAN> to this group
+    <BR>
+<IMG
+ WIDTH="720" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.png"
+ ALT="\begin{lstlisting}[frame=single]
+groupadd operators
+gpasswd -a romek operators
+groups romek  ...">
+<BR>
+To create variable <SPAN  CLASS="textit">LOGINTIME</SPAN> available for every user (<SPAN  CLASS="textit">export</SPAN> makes the variable available to sub-processes)
+    <BR>
+<IMG
+ WIDTH="675" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo ''export LOGINTIME=\uml $(date -u +'%T')\u...
+... example as romek
+echo $LOGINTIME  ...">
+<BR>
+Now, I'm logging of and logging in as root again. To make user tytus able to use shutdown command without giving password using sudo 
+    <BR>
+<IMG
+ WIDTH="1215" HEIGHT="104" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo ''tytus ALL = (ALL) NOPASSWD:/sbin/shutdow...
+...sudo
+sudo shutdown -h  ...">
+<BR>
+I'm starting VM and logging in as root again. To find statically linked programs (almost every is linked dynamically) and compare their sizes
+    <BR>
+<IMG
+ WIDTH="843" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{lstlisting}[frame=single]
+find /sbin/ -executable -type f -exec file {} \...
+...ep ''statically linked''
+stat \lq which grep\lq
+stat /sbin/ldconfig
+\end{lstlisting}">
+<BR>
+To synchronize time with external time server when the system is idle
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="\begin{lstlisting}[frame=single]
+yum install at  ...">
+<BR>
+To update all packages
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="\begin{lstlisting}[frame=single]
+yum update
+\end{lstlisting}">
+<BR>
+To check for any given file from which package it was installed
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="\begin{lstlisting}[frame=single]
+rpm -qf \lq which sh\lq
+\end{lstlisting}">
+<BR>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html51"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html49"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html43"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html52"
+  HREF="node5.html">Additional requirements</A>
+<B> Up:</B> <A NAME="tex2html50"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html44"
+  HREF="node3.html">Installation</A></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Krzysiek
+2013-05-14
+</ADDRESS>
+</BODY>
+</HTML>

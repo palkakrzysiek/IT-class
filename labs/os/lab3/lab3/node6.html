@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Additional requirements</TITLE>
+<META NAME="description" CONTENT="Additional requirements">
+<META NAME="keywords" CONTENT="lab3">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="lab3.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="lab3.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html71"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html69"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html63"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html72"
+  HREF="node7.html">About this document ...</A>
+<B> Up:</B> <A NAME="tex2html70"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html64"
+  HREF="node5.html">Additional requirements</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00060000000000000000">
+Additional requirements</A>
+</H1>
+    To install manual downloaded package (in this case nano)  
+
+<P>
+<BR>
+<IMG
+ WIDTH="768" HEIGHT="104" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="\begin{lstlisting}[frame=single]
+yum install wget  ...">
+<BR>
+
+<P>
+To limit the number of processes that may be run simultaneously by a user belonging to users group to 10.
+
+<P>
+<BR>
+<IMG
+ WIDTH="632" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo ''@users soft nproc 10'' &gt;&gt; /etc/security/limits.conf
+\end{lstlisting}">
+<BR>
+
+<P>
+Automatic logout after 5 minutes of inactivity.
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="35" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="\begin{lstlisting}[frame=single]
+echo ''export TMOUT=300'' &gt;&gt; /etc/profile
+\end{lstlisting}">
+<BR>
+<BR><HR>
+<ADDRESS>
+Krzysiek
+2013-05-14
+</ADDRESS>
+</BODY>
+</HTML>

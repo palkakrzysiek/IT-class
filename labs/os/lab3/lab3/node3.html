@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installation</TITLE>
+<META NAME="description" CONTENT="Installation">
+<META NAME="keywords" CONTENT="lab3">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="lab3.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="lab3.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html41"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html39"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html33"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html42"
+  HREF="node4.html">Basic Configuration</A>
+<B> Up:</B> <A NAME="tex2html40"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html34"
+  HREF="node2.html">Preparation of virtual machine</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00030000000000000000">
+Installation</A>
+</H1>
+    I'm choosing <SPAN  CLASS="textit">Install Fedora</SPAN>. During verification of installation media I'm pressing <SPAN  CLASS="textit">Esc</SPAN>, to skip this proces.
+    I'm choosing default language and going to partitioning section by clicking on disk icon. As <SPAN  CLASS="textit">Partition type</SPAN> I'm choosing <SPAN  CLASS="textit">Standard Partition</SPAN> and selecting <SPAN  CLASS="textit">Let me customize the partitioning of the disks instead.</SPAN>    
+    I'm adding new partition--root--by typing <SPAN  CLASS="textit">/</SPAN> as <SPAN  CLASS="textit">Mount Point</SPAN> and <SPAN  CLASS="textit">2GB</SPAN> as <SPAN  CLASS="textit">Desired capacity</SPAN>. 
+    In <SPAN  CLASS="textit">customize</SPAN> section I'm choosing: 
+    <DL>
+<DT><STRONG>Device Type</STRONG></DT>
+<DD>Standard Partition
+        
+</DD>
+<DT><STRONG>File System</STRONG></DT>
+<DD>ext4
+    
+</DD>
+</DL>
+
+<P>
+And applying changes. In analogous way I'm adding following partitions:
+    <DL>
+<DT><STRONG>/boot</STRONG></DT>
+<DD>500 MB
+        
+</DD>
+<DT><STRONG>/home</STRONG></DT>
+<DD>500 MB
+        
+</DD>
+<DT><STRONG>/tmp</STRONG></DT>
+<DD>500 MB
+        
+</DD>
+<DT><STRONG>/usr</STRONG></DT>
+<DD>4 GB
+        
+</DD>
+<DT><STRONG>/var</STRONG></DT>
+<DD>2 GB
+    
+</DD>
+</DL>
+    And finally I'm adding swap partition for remaining space by typing <SPAN  CLASS="textit">swap</SPAN> in <SPAN  CLASS="textit">Mount Point</SPAN> and leaving <SPAN  CLASS="textit">Desired capacity</SPAN> field empty.
+    I'm clicking <SPAN  CLASS="textit">Finish Partitioning</SPAN> and then <SPAN  CLASS="textit">Software selection</SPAN>. As environment I'm choosing <SPAN  CLASS="textit">Minimal Install</SPAN>, clicking <SPAN  CLASS="textit">Done</SPAN> and <SPAN  CLASS="textit">Begin Installation</SPAN>.
+    I'm setting root password and finishing configuration and clicking <SPAN  CLASS="textit">reboot</SPAN>. After reboot of VM I'm unchecking Fedora installation iso file (Devices <SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$\rightarrow$"></SPAN> CD/DVD) and rebooting it again. 
+
+<P>
+When system boot I'm logging in as <SPAN  CLASS="textit">root</SPAN> and typing following commands: 
+    <BR>
+<IMG
+ WIDTH="566" HEIGHT="219" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="\begin{lstlisting}[frame=single]
+cat /proc/mounts
+tune2fs -c 10 -i 2m -e remount...
+...ne2fs -c 10 -i 2m -e remount-ro /dev/sda7
+tune2fs -l /dev/sda1
+\end{lstlisting}">
+<BR>
+cat /proc/mounts shows current mount options. tune2fs is used to adjust tunable filesystem parameters on filesystems. I used following arguments: 
+
+<P>
+<DL>
+<DT><STRONG>-c 10</STRONG></DT>
+<DD>Adjust the maximal mounts count between two filesystem checks to 10.
+        
+</DD>
+<DT><STRONG>-i 2m</STRONG></DT>
+<DD>Adjust the maximal time between two filesystem checks to 2 months.
+        
+</DD>
+<DT><STRONG>-e remount-ro</STRONG></DT>
+<DD>Change the behavior of the kernel code when errors are detected. Remount filesystem read-only.
+        
+</DD>
+<DT><STRONG>/dev/sda<SPAN  CLASS="textit">N</SPAN></STRONG></DT>
+<DD>Device name.
+        
+</DD>
+<DT><STRONG>-l</STRONG></DT>
+<DD>List the contents of the filesystem superblock (To check).
+    
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html41"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html39"
+  HREF="lab3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html33"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html42"
+  HREF="node4.html">Basic Configuration</A>
+<B> Up:</B> <A NAME="tex2html40"
+  HREF="lab3.html">EXERCISE 3 Linux installation</A>
+<B> Previous:</B> <A NAME="tex2html34"
+  HREF="node2.html">Preparation of virtual machine</A></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Krzysiek
+2013-05-14
+</ADDRESS>
+</BODY>
+</HTML>
