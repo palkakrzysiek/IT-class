@@ -6,9 +6,14 @@
 
 using namespace std;
 
+class liczba{
+    public:
+        int wartosc;
+};
 bool comparator(int a, int b){
     return a>b;
 }
+
 
 int main(int argc, char const* argv[])
 {
@@ -42,13 +47,8 @@ int main(int argc, char const* argv[])
     ofstream tempfile;
     tempfile.open(filename.c_str());
 
-    for(int i = 0; i < numbers.size(); ++i){
-        if(10000 > numbers[i] && numbers[i] > 999){
-            if(numbers[i]/1000 + (numbers[i] % 1000) /100 == (numbers[i] % 100)/10 + (numbers[i] % 10))
-
-            tempfile << numbers[i] << ' ';
-        }
-    }
+    for(int i = 0; i < numbers.size(); ++i)
+        tempfile << numbers[i] << ' ';
 
     tempfile.close();
 

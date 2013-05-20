@@ -6,6 +6,11 @@
 
 using namespace std;
 
+bool comparator(int a, int b){
+    return a>b;
+}
+
+
 int main(int argc, char const* argv[])
 {
     vector<int> numbers;
@@ -30,7 +35,7 @@ int main(int argc, char const* argv[])
         return 0;
     }
 
-    sort(numbers.begin(), numbers.end(), greater<int>());
+    sort(numbers.begin(), numbers.end(), comparator);
 
     cout << "Give the name of the file to create\n>";
     cin >> filename;
