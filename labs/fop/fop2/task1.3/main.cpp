@@ -1,14 +1,14 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <vector>
+#include <list>
 #include <algorithm>
 
 using namespace std;
 
 int main(int argc, char const* argv[])
 {
-    vector<int> numbers;
+    list<int> numbers;
     string answer;
     string filename;
     int num;
@@ -30,7 +30,8 @@ int main(int argc, char const* argv[])
         return 0;
     }
 
-    sort(numbers.begin(), numbers.end(), greater<int>());
+    numbers.sort();
+    numbers.reverse();
 
     cout << "Give the name of the file to create\n>";
     cin >> filename;
@@ -38,11 +39,11 @@ int main(int argc, char const* argv[])
     ofstream tempfile;
     tempfile.open(filename.c_str());
 
-    for(int i = 0; i < numbers.size(); ++i){
-        if(1000 > numbers[i] && numbers[i] > 99){
-            if(((numbers[i] % 1000) /100 + (numbers[i] % 100)/10 + (numbers[i] % 10)) % 2 == 0)
+    for(list<int>::iterator i = numbers.begin(); i != numbers.end(); ++i){
+        if(1000 > *i && *i > 99){
+            if(((*i % 1000) /100 + (*i % 100)/10 + (*i % 10)) % 2 == 1)
 
-            tempfile << numbers[i] << ' ';
+            tempfile << *i << ' ';
         }
     }
 
