@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <vector>
+#include <list>
 #include <algorithm>
 
 using namespace std;
@@ -19,10 +19,9 @@ class Liczba{
     }
 };
 
-
 int main(int argc, char const* argv[])
 {
-    vector<Liczba> numbers;
+    list<Liczba> numbers;
     string answer;
     string filename;
     int num;
@@ -51,8 +50,13 @@ int main(int argc, char const* argv[])
     ofstream tempfile;
     tempfile.open(filename.c_str());
 
-    for(int i = 0; i < numbers.size(); ++i)
-        tempfile << numbers[i].getVal() << ' ';
+    for(list<Liczba>::iterator i = numbers.begin(); i != numbers.end(); ++i){
+        if(1000 > i->getVal() && i->getVal() > 99){
+            if(((i->getVal() % 1000) /100 + (i->getVal() % 100)/10 + (i->getVal() % 10)) % 2 == 1)
+
+            tempfile << i->getVal() << ' ';
+        }
+    }
 
     tempfile.close();
 
@@ -66,6 +70,6 @@ int main(int argc, char const* argv[])
         myfile.close();
      }
 
-    else cout << "Unable to open file"; 
+     else cout << "Unable to open file"; 
     return 0;
 }

@@ -19,7 +19,6 @@ class Liczba{
     }
 };
 
-
 int main(int argc, char const* argv[])
 {
     vector<Liczba> numbers;
@@ -51,8 +50,13 @@ int main(int argc, char const* argv[])
     ofstream tempfile;
     tempfile.open(filename.c_str());
 
-    for(int i = 0; i < numbers.size(); ++i)
-        tempfile << numbers[i].getVal() << ' ';
+    for(int i = 0; i < numbers.size(); ++i){
+        if(10000 > numbers[i].getVal() && numbers[i].getVal() > 999){
+            if(numbers[i].getVal()/1000 + (numbers[i].getVal() % 1000) /100 == (numbers[i].getVal() % 100)/10 + (numbers[i].getVal() % 10))
+
+            tempfile << numbers[i].getVal() << ' ';
+        }
+    }
 
     tempfile.close();
 
@@ -66,6 +70,6 @@ int main(int argc, char const* argv[])
         myfile.close();
      }
 
-    else cout << "Unable to open file"; 
+     else cout << "Unable to open file"; 
     return 0;
 }
