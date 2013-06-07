@@ -6,6 +6,13 @@
 
 using namespace std;
 
+class sytWyj{
+    public:
+        sytWyj(string e){
+            cout << e << endl;
+        }
+};
+
 class Osoba{
     private:
         string imie;
@@ -52,7 +59,7 @@ void readFromFile(list<Osoba> &osoby){
     string line;
     try{
         if (!myfile.is_open()) 
-            throw "Unable to open a file";
+            throw sytWyj("Unable to open a file");
         while ( myfile.good() ) {
           getline (myfile,line);
           if (currentLine % 3 == 0){
@@ -70,11 +77,9 @@ void readFromFile(list<Osoba> &osoby){
         }
         myfile.close();
     }
-    catch (char const* e){
-        cout << e;
+    catch (sytWyj &e){
+        cout << "Unable to open file";
     }
-
-    
 }
 
 void saveToFile(list<Osoba> &osoby){
@@ -180,7 +185,6 @@ int main(int argc, char const* argv[])
 
                 break;
 
-
             case 'p':
                 for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
                     cout << o->getFirstName() << " ";
@@ -207,10 +211,6 @@ int main(int argc, char const* argv[])
             default:
                 continue;
         }
-
-
     }
-
-    
     return 0;
 }
