@@ -34,7 +34,8 @@ void handle_shutdown(int sig){
     exit(0);
 }
 
-int read_in(int socket, char *buf, int len){ // This reads all the characters until it reaches ‘\n’.
+int read_in(int socket, char *buf, int len){
+    // This reads all the characters until it reaches ‘\n’.
     char *s = buf;
     int slen = len;
     int c = recv(socket, s, slen, 0);
@@ -52,7 +53,8 @@ int read_in(int socket, char *buf, int len){ // This reads all the characters un
 }
 
 int open_listener_socket(){
-    int s = socket(PF_INET, SOCK_STREAM, 0); // Create an Internet streaming socket.
+    int s = socket(PF_INET, SOCK_STREAM, 0); 
+    // Create an Internet streaming socket.
     if (s == -1)
         error("Can't open socket");
     return s;
@@ -73,7 +75,8 @@ void bind_to_port(int socket, int port){
          * in the first place. To get around the problem, you just need to set
          * an option on the socket before you bind it:
          */
-        int c = bind (socket, (struct sockaddr *) &name, sizeof(name)); // Grab port 30000.
+        int c = bind (socket, (struct sockaddr *) &name, sizeof(name)); 
+        // Grab port 30000.
     if (c == -1)
         error("Can't bind to socket");
 }
@@ -81,7 +84,8 @@ void bind_to_port(int socket, int port){
 int say(int socket, char *s){
     int result = send(socket, s, strlen(s), 0);
     if (result == -1)
-        fprintf(stderr, "%s: %s\n", "Error talking to the client", strerror(errno));
+        fprintf(stderr, "%s: %s\n", "Error talking to the client",
+                strerror(errno));
     return result;
 }
 
@@ -90,36 +94,52 @@ int main(int argc, char const* argv[])
 {
 
     if (catch_signal(SIGINT, handle_shutdown) == -1)
-        error("Can't set the interrupt handler"); // This will call handle_shutdown() if Ctrl-C is hit.
+        // This will call handle_shutdown() if Ctrl-C is hit.
+        error("Can't set the interrupt handler"); 
+
     listener_d = open_listener_socket();
     bind_to_port(listener_d, 30000); // Create a socket on port 30000.
     if (listen(listener_d, 10) == -1) // Set the listen-queue length to 10.
         error("Can't listen");
+
     struct sockaddr_storage client_addr;
     unsigned int address_size = sizeof(client_addr);
     puts("Waiting for connection");
     char buf[255];
     while (1) {
         // Listen for a connection.
-        int connect_d = accept(listener_d, (struct sockaddr *)&client_addr, &address_size);
+        int connect_d = accept(listener_d, (struct sockaddr *)&client_addr,
+                &address_size);
         if (connect_d == -1)
             error("Can't open secondary socket");
-        // Send data to the client.
-        if (say(connect_d, "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ") != -1) {
-            read_in(connect_d, buf, sizeof(buf)); // Read data from the client.
-        if (strncasecmp("Who's there?", buf, 12))
-            say(connect_d, "You should say 'Who's there?'!");
-        else {
-            if (say(connect_d, "Oscar\r\n> ") != -1) {
-                read_in(connect_d, buf, sizeof(buf));
-                if (strncasecmp("Oscar who?", buf, 10))
-                    say(connect_d, "You should say 'Oscar who?'!\r\n");
-                else
-                    say(connect_d, "Oscar silly question, you get a silly answer\r\n");
+
+        if(!fork()){
+            // In the child, you need to close the main listener socket.
+            // The child will use only the connect_d socket to talk to the client.
+            close(listener_d);
+            if (say(connect_d, "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ") != -1) {
+            // Send data to the client.
+
+                read_in(connect_d, buf, sizeof(buf)); // Read data from the client.
+            if (strncasecmp("Who's there?", buf, 12))
+                say(connect_d, "You should say 'Who's there?'!");
+            else {
+                if (say(connect_d, "Oscar\r\n> ") != -1) {
+                    read_in(connect_d, buf, sizeof(buf));
+                    if (strncasecmp("Oscar who?", buf, 10))
+                        say(connect_d, "You should say 'Oscar who?'!\r\n");
+                    else
+                        say(connect_d,
+                                "Oscar silly question, you get a silly answer\r\n");
+                }
             }
+            }
+            close(connect_d); // Once the conversation’s over, the child
+            exit(0);
+            // Once the child process has finished talking, it should exit.
+            // That will prevent it from falling into the main server loop.
         }
-        }
-        close(connect_d);
+    close(connect_d);
     }
 
     return 0;
