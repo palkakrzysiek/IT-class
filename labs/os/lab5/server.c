@@ -7,6 +7,50 @@
 #include <unistd.h>
 #include <signal.h>
 
+#define MAX_NUM_OF_ENTRIES 10000
+
+char const* WelcomeMessage = "Library Server\r\n\
+Version 0.1\r\n\
+Commands:\r\n\
+1 - search by fragment of author's name\r\n\
+2 - search by book's title\r\n\
+>";
+
+char c_DATA[MAX_NUM_OF_ENTRIES][4][255];
+// <signature> : <author> : <title> : <borrowed by>
+
+int NUM_OF_ENTRIES = 0;
+
+void read_database(char const* filename){
+    FILE *in_file = fopen(filename, "r");
+    char c_input[4][255];
+    while(fscanf(in_file, "%255[^:] : %255[^:] : %255[^:] : %255[^:\n]\n", c_input[0],
+            c_input[1], c_input[2], c_input[3]) == 4){
+        strcpy(c_DATA[NUM_OF_ENTRIES][0], c_input[0]);
+        strcpy(c_DATA[NUM_OF_ENTRIES][1], c_input[1]);
+        strcpy(c_DATA[NUM_OF_ENTRIES][2], c_input[2]);
+        strcpy(c_DATA[NUM_OF_ENTRIES++][3], c_input[3]);
+    }
+    printf("Read %d entries.\n", NUM_OF_ENTRIES);
+    int i = 0;
+    for(i = 0; i < NUM_OF_ENTRIES; i++){
+        printf("%s. %s - %s, borrowed by: %s\n", c_DATA[i][0], c_DATA[i][1],
+                c_DATA[i][2], c_DATA[i][3]);
+    }
+    fclose(in_file);
+}
+
+int find_record(int field, char* searched, int begin){
+    int i;
+    for(i = begin; i < NUM_OF_ENTRIES; i++){
+        if(strstr(c_DATA[i][field], searched)){
+            return i;
+        }
+    } 
+    return -1;
+}
+
+
 void error(char *msg){
     fprintf(stderr, "%s: %s\n", msg, strerror(errno));
     exit(1);
@@ -97,6 +141,8 @@ int main(int argc, char const* argv[])
         // This will call handle_shutdown() if Ctrl-C is hit.
         error("Can't set the interrupt handler"); 
 
+    read_database("data.dat");
+
     listener_d = open_listener_socket();
     bind_to_port(listener_d, 30000); // Create a socket on port 30000.
     if (listen(listener_d, 10) == -1) // Set the listen-queue length to 10.
@@ -107,6 +153,7 @@ int main(int argc, char const* argv[])
     puts("Waiting for connection");
     char buf[255];
     while (1) {
+        int i;
         // Listen for a connection.
         int connect_d = accept(listener_d, (struct sockaddr *)&client_addr,
                 &address_size);
@@ -117,22 +164,38 @@ int main(int argc, char const* argv[])
             // In the child, you need to close the main listener socket.
             // The child will use only the connect_d socket to talk to the client.
             close(listener_d);
-            if (say(connect_d, "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ") != -1) {
+            while (say(connect_d, WelcomeMessage) != -1) {
             // Send data to the client.
-
-                read_in(connect_d, buf, sizeof(buf)); // Read data from the client.
-            if (strncasecmp("Who's there?", buf, 12))
-                say(connect_d, "You should say 'Who's there?'!");
-            else {
-                if (say(connect_d, "Oscar\r\n> ") != -1) {
-                    read_in(connect_d, buf, sizeof(buf));
-                    if (strncasecmp("Oscar who?", buf, 10))
-                        say(connect_d, "You should say 'Oscar who?'!\r\n");
-                    else
-                        say(connect_d,
-                                "Oscar silly question, you get a silly answer\r\n");
+                read_in(connect_d, buf, sizeof(buf)); 
+                // Read data from the client.
+                if (strncasecmp("1", buf, 1)){
+                    say(connect_d, "You should say 'Who's there?'!");
                 }
-            }
+                else if (strncasecmp("2", buf, 1)){
+                    if (say(connect_d, "Give an phrase\r\n> ") != -1) {
+                        read_in(connect_d, buf, sizeof(buf));
+                        char temp[255];
+                        strcpy(temp, buf);
+                        for(i = 0; i < NUM_OF_ENTRIES; i++){
+                            say(connect_d, (temp));
+                            say(connect_d, "abc");
+                            if(strstr(c_DATA[i][1], buf)){
+                                say(connect_d, "found!\r\n");
+                            }
+                        } 
+                    }
+                }
+                
+                else {
+                    if (say(connect_d, "Oscar\r\n> ") != -1) {
+                        read_in(connect_d, buf, sizeof(buf));
+                        if (strncasecmp("Oscar who?", buf, 10))
+                            say(connect_d, "You should say 'Oscar who?'!\r\n");
+                        else
+                            say(connect_d,
+                                    "Oscar silly question, you get a silly answer\r\n");
+                    }
+                }
             }
             close(connect_d); // Once the conversation’s over, the child
             exit(0);
@@ -143,4 +206,4 @@ int main(int argc, char const* argv[])
     }
 
     return 0;
-}
+    }

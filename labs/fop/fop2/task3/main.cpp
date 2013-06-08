@@ -6,10 +6,16 @@
 
 using namespace std;
 
-class sytWyj{
+class NotIntException{
     public:
-        sytWyj(string e){
-            cout << e << endl;
+        string what(){
+            return "The value is not an integer";
+        }
+};
+class FileError{
+    public:
+        string what(){
+            return "Cannot open the file";
         }
 };
 
@@ -47,115 +53,96 @@ class Osoba{
     }
 };
 
-void readFromFile(list<Osoba> &osoby){
-    string filename;
-    int currentLine = 0;
-    string imie, nazwisko;
-    int wiek;
-    cout << "Give the name of the file to open\n>";
-    cin >> filename;
+class BazaDanych {
+    private:
+        list<Osoba> osoby;
 
-    ifstream myfile(filename.c_str());
-    string line;
-    try{
-        if (!myfile.is_open()) 
-            throw sytWyj("Unable to open a file");
-        while ( myfile.good() ) {
-          getline (myfile,line);
-          if (currentLine % 3 == 0){
-              imie = line;
-          }
-          if (currentLine % 3 == 1){
-              nazwisko = line;
-          }
-          if (currentLine % 3 == 2){
-              wiek = atoi(line.c_str());
-              cout << "add\n";
-              osoby.push_back(Osoba(imie, nazwisko, wiek));
-          }
-          currentLine++;
+    public:
+        BazaDanych(){
+            cout << "Database has been created" << endl;
         }
-        myfile.close();
-    }
-    catch (sytWyj &e){
-        cout << "Unable to open file";
-    }
-}
 
-void saveToFile(list<Osoba> &osoby){
-    string filename;
-    cout << "Give the name of the file to create\n>";
-    cin >> filename;
-
-    ofstream tempfile;
-    tempfile.open(filename.c_str());
-    for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
-        tempfile << o->getFirstName() << endl;
-        tempfile << o->getSenondName() << endl;
-        tempfile << o->getAge() << endl;
-    }
-    tempfile.close();
-}
-
-
-void deletePerson(list<Osoba> &osoby){
-    string decision;
-    string searched;
-    string imie, nazwisko;
-    cout << "What do you want to do?\n\
-    1. Delete people with given first name\n\
-    2. Delete people with given second name\n\
-    3. Delete people with given part of first or second name\n\
-    > ";
-    cin >> decision;
-    cout << "Give phrase to match >";
-    cin >> searched;
-    list<Osoba>::iterator o = osoby.begin();
-    if (decision[0] == '1'){
-        while( o != osoby.end()){
-            if(o->getFirstName() == searched){
-                osoby.erase(o++);
-            }
-            else{
-                ++o;
+        void deletePerson(string who){
+            list<Osoba>::iterator o = osoby.begin();
+            string imie, nazwisko;
+            while( o != osoby.end()){ imie = o->getFirstName();
+                nazwisko = o->getSenondName();
+                if(string::npos != imie.find(who) || string::npos != nazwisko.find(who)){
+                    osoby.erase(o++);
+                }
+                else{
+                    ++o;
+                }
             }
         }
-    }
-    if (decision[0] == '2'){
-        while( o != osoby.end()){
-            if(o->getSenondName() == searched){
-                osoby.erase(o++);
+
+        void readFromFile(string filename){
+            int currentLine = 0;
+            string imie, nazwisko;
+            int wiek;
+            ifstream myfile(filename.c_str());
+            string line;
+            if (!myfile.is_open()) 
+                throw FileError();
+            while ( myfile.good() ) {
+              getline (myfile,line);
+              if (currentLine % 3 == 0){
+                  imie = line;
+              }
+              if (currentLine % 3 == 1){
+                  nazwisko = line;
+              }
+              if (currentLine % 3 == 2){
+                  wiek = atoi(line.c_str());
+                  cout << "add\n";
+                  osoby.push_back(Osoba(imie, nazwisko, wiek));
+              }
+              currentLine++;
             }
-            else{
-                ++o;
-            }
+            myfile.close();
         }
-    }
-    if (decision[0] == '3'){
-        while( o != osoby.end()){
-            imie = o->getFirstName();
-            nazwisko = o->getSenondName();
-            if(string::npos != imie.find(searched) || string::npos != nazwisko.find(searched)){
-                osoby.erase(o++);
+
+        void saveToFile(string filename){
+            ofstream tempfile;
+            tempfile.open(filename.c_str());
+            for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
+                tempfile << o->getFirstName() << endl;
+                tempfile << o->getSenondName() << endl;
+                tempfile << o->getAge() << endl;
             }
-            else{
-                ++o;
-            }
+            tempfile.close();
         }
-    }
-}
+
+        void addPerson(string imie, string nazwisko, string wiek){
+            int temp = 0;
+            while(wiek[temp] != 0){
+                if('0' > wiek[temp] || wiek[temp] > '9')
+                    throw NotIntException();
+                temp++;
+            }
+            int newWiek = 0;
+            newWiek = atoi(wiek.c_str());
+            osoby.push_back(Osoba(imie, nazwisko, newWiek));
+        }   
+
+        void printDatabase(){
+            for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
+                cout << o->getFirstName() << " ";
+                cout << o->getSenondName() << " ";
+                cout << o->getAge() << endl;
+            }
+        }   
+};
+
+
 
 int main(int argc, char const* argv[])
 {
-    list<Osoba> osoby;
+    BazaDanych *database = new BazaDanych();
     string answer;
     string filename;
-    string imie, nazwisko;
-    ofstream tempfile;
-    string line;
-    string tempWiek;
-    int currentline = 0;
-    int wiek;
+    string imie, nazwisko, tempWiek;
+    string searched;
     bool quit = false;
     while(!quit){
         cout << "What do you want to do? ";
@@ -169,40 +156,39 @@ int main(int argc, char const* argv[])
                 cout << "give the age: ";
                 cin >> tempWiek;
                 try{
-                    int temp = 0;
-                    while(tempWiek[temp] != 0){
-                        cout << tempWiek[temp];
-                        if('0' > tempWiek[temp] || tempWiek[temp] > '9')
-                            throw "not a number";
-                        temp++;
-                    }
-                    wiek = atoi(tempWiek.c_str());
-                    osoby.push_back(Osoba(imie, nazwisko, wiek));
+                    database->addPerson(imie, nazwisko, tempWiek);
                 }
-                catch(char const* e){
-                    cout << e;
+                catch(NotIntException &e){
+                    cerr << "An error occurred: " << e.what() << endl;
                 }
 
                 break;
 
             case 'p':
-                for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
-                    cout << o->getFirstName() << " ";
-                    cout << o->getSenondName() << " ";
-                    cout << o->getAge() << endl;
-                }
+                database->printDatabase();
                 break;
 
             case 's':
-                saveToFile(osoby);
+                cout << "Give the name of the file to create\n>";
+                cin >> filename;
+                database->saveToFile(filename);
                 break;
 
             case 'r':
-                readFromFile(osoby);
+                cout << "Give the name of the file to open\n>";
+                cin >> filename;
+                try{
+                    database->readFromFile(filename);
+                }
+                catch(FileError &e){
+                    cerr << "An error occurred: " << e.what() << endl;
+                }
                 break;
 
             case 'd':
-                deletePerson(osoby);
+                cout << "Give phrase to match >";
+                cin >> searched;
+                database->deletePerson(searched);
                 break;
 
             case 'q':
