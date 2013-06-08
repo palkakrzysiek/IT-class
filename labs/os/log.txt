@@ -197,3 +197,5 @@ abc def
 [pią, 10 maj 2013, 15:36:14 CEST] 5 6 krzysiek
 [pią, 10 maj 2013, 15:40:33 CEST] /tmp/5 /tmp/6 krzysiek
 [pią, 10 maj 2013, 15:45:34 CEST] /tmp/abc /tmp/def krzysiek
+[pią, 7 cze 2013, 12:57:24 CEST] /tmp/2 /tmp/1 krzysiek
+[pią, 7 cze 2013, 12:57:45 CEST] /tmp/1 /tmp/2 zenek
