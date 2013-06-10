@@ -62,13 +62,12 @@ class BazaDanych {
             cout << "Database has been created" << endl;
         }
 
-        void deletePerson(string im, string naz){
+        void deletePerson(string who){
             list<Osoba>::iterator o = osoby.begin();
             string imie, nazwisko;
-            while( o != osoby.end()){ 
-                imie = o->getFirstName();
+            while( o != osoby.end()){ imie = o->getFirstName();
                 nazwisko = o->getSenondName();
-                if(imie == im && nazwisko == naz){
+                if(string::npos != imie.find(who) || string::npos != nazwisko.find(who)){
                     osoby.erase(o++);
                 }
                 else{
@@ -77,24 +76,6 @@ class BazaDanych {
             }
         }
 
-        void editPerson(string im, string naz, string newImie, string NewNazwisko, string wiek){
-            string imie, nazwisko;
-            for(list<Osoba>::iterator o = osoby.begin(); o != osoby.end(); ++o){
-                imie = o->getFirstName();
-                nazwisko = o->getSenondName();
-                for(int temp = 0; temp < wiek.length(); temp++){
-                    if('0' > wiek[temp] || wiek[temp] > '9')
-                        throw NotIntException();
-                }
-                int newWiek = 0;
-                newWiek = atoi(wiek.c_str());
-                if(imie == im && nazwisko == naz){
-                    o->setFirstName(newImie);
-                    o->setSecondName(NewNazwisko);
-                    o->setAge(newWiek);
-                }
-            }
-        }
         void readFromFile(string filename){
             int currentLine = 0;
             string imie, nazwisko;
@@ -133,10 +114,11 @@ class BazaDanych {
         }
 
         void addPerson(string imie, string nazwisko, string wiek){
-
-            for(int temp = 0; temp < wiek.length(); temp++){
+            int temp = 0;
+            while(wiek[temp] != 0){
                 if('0' > wiek[temp] || wiek[temp] > '9')
                     throw NotIntException();
+                temp++;
             }
             int newWiek = 0;
             newWiek = atoi(wiek.c_str());
@@ -160,13 +142,10 @@ int main(int argc, char const* argv[])
     string answer;
     string filename;
     string imie, nazwisko, tempWiek;
-    string newImie, newNazwisko;
     string searched;
     bool quit = false;
     while(!quit){
-        cout << "What do you want to do?\n";
-        cout << "a - add,\ne - edit,\nd - delete,\np - print database,\n";
-        cout << "r - read from file,\ns - save to file\n>"; 
+        cout << "What do you want to do? ";
         cin >> answer;
         switch(answer[0]){
             case 'a':
@@ -178,26 +157,6 @@ int main(int argc, char const* argv[])
                 cin >> tempWiek;
                 try{
                     database->addPerson(imie, nazwisko, tempWiek);
-                }
-                catch(NotIntException &e){
-                    cerr << "An error occurred: " << e.what() << endl;
-                }
-
-                break;
-
-            case 'e':
-                cout << "give the first name of person to edit: ";
-                cin >> imie;
-                cout << "give the second name of person to edit: ";
-                cin >> nazwisko;
-
-                cout << "give the first name: ";
-                cin >> newImie; cout << "give the second name: ";
-                cin >> newNazwisko;
-                cout << "give the age: ";
-                cin >> tempWiek;
-                try{
-                    database->editPerson(imie, nazwisko, newImie, newNazwisko, tempWiek);
                 }
                 catch(NotIntException &e){
                     cerr << "An error occurred: " << e.what() << endl;
@@ -227,11 +186,9 @@ int main(int argc, char const* argv[])
                 break;
 
             case 'd':
-                cout << "give the first name: ";
-                cin >> imie;
-                cout << "give the second name: ";
-                cin >> nazwisko;
-                database->deletePerson(imie, nazwisko);
+                cout << "Give phrase to match >";
+                cin >> searched;
+                database->deletePerson(searched);
                 break;
 
             case 'q':

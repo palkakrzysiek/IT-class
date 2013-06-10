@@ -8,6 +8,7 @@
 #include <signal.h>
 
 #define MAX_NUM_OF_ENTRIES 10000
+#define BUFFER_SIZE 255
 
 char const* WelcomeMessage = "Library Server\r\n\
 Version 0.1\r\n\
@@ -16,15 +17,14 @@ Commands:\r\n\
 2 - search by book's title\r\n\
 >";
 
-char c_DATA[MAX_NUM_OF_ENTRIES][4][255];
+char c_DATA[MAX_NUM_OF_ENTRIES][4][BUFFER_SIZE];
 // <signature> : <author> : <title> : <borrowed by>
-
 
 int NUM_OF_ENTRIES = 0;
 
 void read_database(char const* filename){
     FILE *in_file = fopen(filename, "r");
-    char c_input[4][255];
+    char c_input[4][BUFFER_SIZE];
     while(fscanf(in_file, "%255[^:] : %255[^:] : %255[^:] : %255[^:\n]\n", c_input[0],
             c_input[1], c_input[2], c_input[3]) == 4){
         strcpy(c_DATA[NUM_OF_ENTRIES][0], c_input[0]);
@@ -152,7 +152,7 @@ int main(int argc, char const* argv[])
     struct sockaddr_storage client_addr;
     unsigned int address_size = sizeof(client_addr);
     puts("Waiting for connection");
-    char buf[255];
+    char buf[BUFFER_SIZE];
     while (1) {
         int i;
         // Listen for a connection.
@@ -167,19 +167,18 @@ int main(int argc, char const* argv[])
             close(listener_d);
             while (say(connect_d, WelcomeMessage) != -1) {
             // Send data to the client.
-                read_in(connect_d, buf, sizeof(buf)); 
+                read_in(connect_d, buf, BUFFER_SIZE); 
+                say(connect_d, buf);
                 // Read data from the client.
                 if (strncasecmp("1", buf, 1)){
                     say(connect_d, "You should say 'Who's there?'!");
                 }
                 else if (strncasecmp("2", buf, 1)){
                     if (say(connect_d, "Give an phrase\r\n> ") != -1) {
-                        read_in(connect_d, buf, sizeof(buf));
-                        char temp[255];
-                        strcpy(temp, buf);
+                        read_in(connect_d, buf, BUFFER_SIZE);
+                        say(connect_d, buf);
                         for(i = 0; i < NUM_OF_ENTRIES; i++){
-                            say(connect_d, (temp));
-                            say(connect_d, "abc");
+                            say(connect_d, "abc\r\n");
                             if(strstr(c_DATA[i][1], buf)){
                                 say(connect_d, "found!\r\n");
                             }
@@ -189,7 +188,7 @@ int main(int argc, char const* argv[])
                 
                 else {
                     if (say(connect_d, "Oscar\r\n> ") != -1) {
-                        read_in(connect_d, buf, sizeof(buf));
+                        read_in(connect_d, buf, BUFFER_SIZE);
                         if (strncasecmp("Oscar who?", buf, 10))
                             say(connect_d, "You should say 'Oscar who?'!\r\n");
                         else
