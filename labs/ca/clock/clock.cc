@@ -1,8 +1,5 @@
 #include <dos.h>
-#include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <iostream.h>
 
 #define CLOCK_INT 0x1C
 #define KEYBOARD_INT 0x09
